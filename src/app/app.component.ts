@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'qr_pro_JS';
+  componente: string = '';
+  
+  activeTask(componente:string){
+
+    componente = '<app-agenda></app-agenda>';
+
+  }
+
 }
