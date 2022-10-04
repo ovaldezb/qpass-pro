@@ -1,0 +1,54 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="row">
+    <div class="col-2"><app-left-menu></app-left-menu></div>
+    <div class="col-6" style="margin-top: 20px;">
+      <table style="margin-top: 30px;" class="table">
+        <thead>
+          <tr>
+            <td><i class="bi bi-plus-circle" (click)="addUser()"></i></td>
+            <td><i class="bi bi-trash"></i></td>
+            <td><i class="bi bi-pencil-square"></i></td>
+          </tr>
+        </thead>
+      </table>
+      <table *ngIf="isList" class="table table-hover">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Condominio</th>
+            <th>Antiguedad</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Juan</td>
+            <td>Perez</td>
+            <td>Americas</td>
+            <td>3a</td>
+          </tr>
+          <tr>
+            <td>Guillermo</td>
+            <td>Vazquez</td>
+            <td>Solidaridad</td>
+            <td>2a</td>
+          </tr>
+          <tr>
+            <td>Miguel</td>
+            <td>Contreras</td>
+            <td>Sta Maria</td>
+            <td>2a</td>
+          </tr>
+          <tr>
+            <td>Armando</td>
+            <td>Gonzalez</td>
+            <td>Asuncion</td>
+            <td>3a</td>
+          </tr>
+        </tbody>
+      </table>
+      <app-add-usuario *ngIf="isAdd"></app-add-usuario>
+    </div>
+  </div>
+</div>
