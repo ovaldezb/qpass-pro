@@ -8,6 +8,10 @@ import { LeftMenuComponent } from './components/left-menu/left-menu.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { InvitacionesComponent } from './components/invitaciones/invitaciones.component';
+import { AddUsuarioComponent } from './components/add-usuario/add-usuario.component';
+import { ListaUsuarioComponent } from './components/lista-usuario/lista-usuario.component';
+import { UsuarioComponent } from './components/usuario/usuario.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,11 +20,15 @@ import { InvitacionesComponent } from './components/invitaciones/invitaciones.co
     LeftMenuComponent,
     LayoutComponent,
     NavbarComponent,
-    InvitacionesComponent
+    InvitacionesComponent,
+    AddUsuarioComponent,
+    ListaUsuarioComponent,
+    UsuarioComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
