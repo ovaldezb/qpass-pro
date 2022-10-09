@@ -77,7 +77,7 @@ export class UsuarioComponent implements OnInit {
   }
 
   selectRow(index:number):void{
-    console.log('Index'+index);
+    console.log('Index' + index);
     this.HighlightRow = index;
   }
 
