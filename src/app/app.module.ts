@@ -19,6 +19,7 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { UsuariosService } from './APIv1/usuarios.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ListaUsuariosComponent } from './components/lista-usuarios/lista-usuarios.component';
+import { AddEditUsuariosComponent } from './components/add-edit-usuarios/add-edit-usuarios.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ListaUsuariosComponent } from './components/lista-usuarios/lista-usuari
     ListaUsuarioComponent,
     UsuarioComponent,
     UsuariosComponent,
-    ListaUsuariosComponent
+    ListaUsuariosComponent,
+    AddEditUsuariosComponent
   ],
   imports: [
     BrowserModule,
