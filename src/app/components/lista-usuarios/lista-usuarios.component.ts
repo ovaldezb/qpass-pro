@@ -63,7 +63,7 @@ export class ListaUsuariosComponent implements OnInit {
     this.UserSelected = this.ListaUsuarios[this.HighlightRow]
 
     console.log(this.HighlightRow)
-    console.log(this.ListaUsuarios[this.HighlightRow]['id'])
+    //console.log(this.ListaUsuarios[this.HighlightRow]['id'])
   }
 
   crearUsuario() {

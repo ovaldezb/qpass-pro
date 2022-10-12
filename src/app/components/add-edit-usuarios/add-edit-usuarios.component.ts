@@ -8,19 +8,30 @@ import { ListaUsuariosComponent } from '../lista-usuarios/lista-usuarios.compone
 })
 export class AddEditUsuariosComponent implements OnInit {
 
+  public userId: String = "";
+  public Nombre: String = "";
+  public Apellidos: String = "";
+  public Condominio: String = "";
+  public Direccion: String = "";
+
+
   constructor(private service: ListaUsuariosComponent) { }
 
  // @Input() UserSelected:any;
 
-  userId: any  = this.service.UserSelected;
+  userObject: any  = this.service.UserSelected;
 
 
   ngOnInit(): void {
 
     //this.userId = this.UserSelected;
 
-    console.log(this.userId);
-
+    this.userId = this.userObject["id"];
+    this.Nombre = this.userObject["Nombre"];
+    this.Apellidos = this.userObject["Apellidos"];
+    this.Direccion = this.userObject["Direccion"];
+    this.Condominio = this.userObject["Condominio"];
+    
   }
 
   test(){
