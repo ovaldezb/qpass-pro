@@ -1,3 +1,4 @@
+import { NONE_TYPE } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from 'src/app/APIv1/usuarios.service';
 
@@ -15,6 +16,7 @@ export class ListaUsuariosComponent implements OnInit {
   public userOperation: any = [];
   public ListaUsuarios: any = [];
   public UserSelected: any = [];
+  
 
   constructor(private service: UsuariosService) { }
 
@@ -42,14 +44,20 @@ export class ListaUsuariosComponent implements OnInit {
 
   addUserClick(){
 
+    this.ModalTitle = "Agregar Usuario";
+
+    console.log("si llega")
+    
     this.userOperation = {
-      Nombre:"", 
+      id:"0",
+      Nombre: "", 
       Apellidos:"",
       Condominio:"",
       Direccion:""
     }
+
+    this.UserSelected = this.userOperation;
     
-    this.ModalTitle = "Agregar Usuario";
     this.ActivateAddEditUser = true;
 
   }
@@ -62,11 +70,18 @@ export class ListaUsuariosComponent implements OnInit {
 
     this.UserSelected = this.ListaUsuarios[this.HighlightRow]
 
-    console.log(this.HighlightRow)
+    //console.log(this.HighlightRow)
     //console.log(this.ListaUsuarios[this.HighlightRow]['id'])
   }
 
-  crearUsuario() {
+  crearUsuario(/*private service*/) {
+
+    var palAPI = {"Nombre": "this.userOperation.Nombre"};
+    console.log();
+  }
+
+  editarUsuario(){
+
 
   }
 
