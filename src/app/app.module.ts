@@ -7,11 +7,12 @@ import { AgendaComponent } from './components/agenda/agenda.component';
 import { LeftMenuComponent } from './components/left-menu/left-menu.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { InvitacionesComponent } from './components/invitaciones/invitaciones.component';
 import { AddUsuarioComponent } from './components/add-usuario/add-usuario.component';
 import { ListaUsuarioComponent } from './components/lista-usuario/lista-usuario.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { FormsModule } from '@angular/forms';
+import { AgregarInvitacionComponent } from './components/agregar-invitacion/agregar-invitacion.component';
+import { ListaInvitacionesComponent } from './components/lista-invitaciones/lista-invitaciones.component';
 
 @NgModule({
   declarations: [
@@ -20,10 +21,11 @@ import { FormsModule } from '@angular/forms';
     LeftMenuComponent,
     LayoutComponent,
     NavbarComponent,
-    InvitacionesComponent,
     AddUsuarioComponent,
     ListaUsuarioComponent,
-    UsuarioComponent
+    UsuarioComponent,
+    AgregarInvitacionComponent,
+    ListaInvitacionesComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,34 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="row">
+    <div class="col-2"><app-left-menu></app-left-menu></div>
+    <div class="col-6" style="margin-top: 20px;">
+      <table *ngIf="isList" style="margin-top: 30px;" class="table">
+        <thead>
+          <tr>
+            <td><i class="bi bi-plus-circle" (click)="agregarInvitacion()"></i></td>
+            <td><i class="bi bi-trash"></i></td>
+            <td><i class="bi bi-pencil-square"></i></td>
+          </tr>
+        </thead>
+      </table>
+      <table *ngIf="isList" class="table table-hover">
+        <thead>
+          <tr>
+            <th>Anfitrión</th>
+            <th>Asunto</th>
+            <th># Invitados</th>
+            <th>Fecha Evento</th>
+            <th>Detalle</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+        </tbody>
+      </table>
+      <div style="margin-top: 30px;">
+        <app-agregar-invitacion *ngIf="isAdd"></app-agregar-invitacion>
+      </div>
+    </div>
+  </div>
+</div>
