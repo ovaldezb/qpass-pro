@@ -36,8 +36,7 @@
       <!--app-add-usuario-- *ngIf="isAdd" (cancelItemEvent)="cancelItem($event)"></!--app-add-usuario-->
       <form *ngIf="isAdd">
         <div class="mb-3">
-          <input type="text" class="form-control" name="nombre" aria-describedby="emailHelp" placeholder="NOMBRE"
-            #nombre="ngModel" [(ngModel)]="usuario.nombre">
+          <input type="text" class="form-control" name="nombre" aria-describedby="emailHelp" placeholder="NOMBRE" [(ngModel)]="usuario.nombre">
           <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
         </div>
         <div class="mb-3">
