@@ -1,13 +1,15 @@
 <app-navbar></app-navbar>
+<app-left-menu></app-left-menu>
+
 <div class="container">
   <div class="row">
-    <div class="col-2"><app-left-menu></app-left-menu></div>
+    <div class="col-2"></div>
     <div class="col-6" style="margin-top: 20px;">
       <table style="margin-top: 30px;" class="table">
         <thead>
           <tr>
             <td style="text-align: center;"><i class="bi bi-plus-circle" (click)="addUser()"></i></td>
-            <td style="text-align: center;"><i class="bi bi-trash" (click)="deleteUser()" ></i></td>
+            <td style="text-align: center;"><i class="bi bi-trash" (click)="deleteUser()"></i></td>
             <td style="text-align: center;"><i class="bi bi-pencil-square" (click)="updateUser()"></i></td>
           </tr>
         </thead>
@@ -22,7 +24,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let usuario of usuarios; let i = index" (dblclick)="editUsuario(i)" (click)="selectRow(i)" [class.selected]="i == HighlightRow">
+          <tr *ngFor="let usuario of usuarios; let i = index" (dblclick)="editUsuario(i)" (click)="selectRow(i)"
+            [class.selected]="i == HighlightRow">
             <td>{{usuario.nombre}}</td>
             <td>{{usuario.apellido}}</td>
             <td>{{usuario.condominio}}</td>
@@ -33,17 +36,21 @@
       <!--app-add-usuario-- *ngIf="isAdd" (cancelItemEvent)="cancelItem($event)"></!--app-add-usuario-->
       <form *ngIf="isAdd">
         <div class="mb-3">
-          <input type="text" class="form-control" name="nombre" aria-describedby="emailHelp" placeholder="NOMBRE" #nombre="ngModel" [(ngModel)]="usuario.nombre">
+          <input type="text" class="form-control" name="nombre" aria-describedby="emailHelp" placeholder="NOMBRE"
+            #nombre="ngModel" [(ngModel)]="usuario.nombre">
           <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
         </div>
         <div class="mb-3">
-          <input type="text" name="apellido" class="form-control" placeholder="APELLIDO" #apellido="ngModel" [(ngModel)]="usuario.apellido">
+          <input type="text" name="apellido" class="form-control" placeholder="APELLIDO" #apellido="ngModel"
+            [(ngModel)]="usuario.apellido">
         </div>
-        <div class="mb-3">  
-          <input type="text" name="condominio" class="form-control" placeholder="CONDOMINIO" #condominio="ngModel" [(ngModel)]="usuario.condominio">
+        <div class="mb-3">
+          <input type="text" name="condominio" class="form-control" placeholder="CONDOMINIO" #condominio="ngModel"
+            [(ngModel)]="usuario.condominio">
         </div>
-        <div class="mb-3">  
-          <input type="text" name="antiguedad" class="form-control" placeholder="ANTIGUEDAD" #antiguedad="ngModel" [(ngModel)]="usuario.antiguedad">
+        <div class="mb-3">
+          <input type="text" name="antiguedad" class="form-control" placeholder="ANTIGUEDAD" #antiguedad="ngModel"
+            [(ngModel)]="usuario.antiguedad">
         </div>
         <button type="button" class="btn btn-primary" (click)="submit()">{{action}}</button>
         <button type="button" class="btn btn-danger" (click)="cancel()">Cancel</button>

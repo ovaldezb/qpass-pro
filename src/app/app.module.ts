@@ -11,8 +11,18 @@ import { AddUsuarioComponent } from './components/add-usuario/add-usuario.compon
 import { ListaUsuarioComponent } from './components/lista-usuario/lista-usuario.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { FormsModule } from '@angular/forms';
+
 import { AgregarInvitacionComponent } from './components/agregar-invitacion/agregar-invitacion.component';
 import { ListaInvitacionesComponent } from './components/lista-invitaciones/lista-invitaciones.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { UsuariosComponent } from './components/usuarios/usuarios.component';
+
+//Servicios -> Models
+import { UsuariosService } from './APIv1/usuarios.service';
+import { HttpClientModule } from '@angular/common/http';
+import { ListaUsuariosComponent } from './components/lista-usuarios/lista-usuarios.component';
+import { AddEditUsuariosComponent } from './components/add-edit-usuarios/add-edit-usuarios.component';
+
 
 @NgModule({
   declarations: [
@@ -25,14 +35,19 @@ import { ListaInvitacionesComponent } from './components/lista-invitaciones/list
     ListaUsuarioComponent,
     UsuarioComponent,
     AgregarInvitacionComponent,
-    ListaInvitacionesComponent
+    ListaInvitacionesComponent,
+    UsuariosComponent,
+    ListaUsuariosComponent,
+    AddEditUsuariosComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [UsuariosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
