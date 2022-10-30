@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="w-auto p-3 fs-1 text-center" style="background-color: rgb(238, 100, 100);">Nueva Invitación</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="row">
+        <div class="col">
+          <div class="mb-3">
+            <label for="" class="form-label">Anfitrión:</label>
+            <input class="form-control" type="text" placeholder="Anfitrión" name="anfitrion"  [(ngModel)]="invitacion.anfitrion">
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">Asunto:</label>
+            <input class="form-control" type="text" placeholder="Asunto" [(ngModel)]="invitacion.asunto">
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">Invitado:</label>
+            <input class="form-control" type="text" placeholder="Nombre Invitado" [(ngModel)]="invitacion.nombreInvitado">
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label"></label>
+            <input class="form-control" type="tel" placeholder="Teléfono Invitado" [(ngModel)]="invitacion.telefonoInvitado">
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label"></label>
+            <input class="form-control" type="email" placeholder="Correo Invitado" [(ngModel)]="invitacion.correoInvitado">
+          </div>
+        </div>
+        <div class="col">
+          <div class="mb-3" >
+            <label for="" class="form-label" style="margin-bottom: -5px;">Fecha del Evento</label>
+          </div>
+          <div class="input-group mb-3">
+            <input class="form-control" type="date" placeholder="Fecha Evento" [(ngModel)]="invitacion.fechaEvento">
+            <span class="input-group-text">&nbsp;</span>
+            <input class="form-control" type="time" placeholder="Hora Evento" [(ngModel)]="invitacion.horaEvento">
+          </div>
+          <div class="mb-3">
+            <label for="customRange1" class="form-label">Duración: {{invitacion.duracion}}&nbsp;horas </label>
+            <input type="range" class="form-range" id="customRange1" [(ngModel)]="invitacion.duracion">
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">Lugar</label>
+            <input class="form-control" type="text" placeholder="Lugar" [(ngModel)]="invitacion.lugar">
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">Descripción:</label>
+            <textarea class="form-control" aria-label="With textarea" [(ngModel)]="invitacion.detalle"></textarea>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="invitacion.notificarEntrada">
+            <label for="" class="form-check-label">Notificar entrada</label>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="row justify-content-end">
+    <div class="col">
+      <div class="button-group" role="group" aria-label="Basic Example">
+        <button class="btn btn-primary" (click)="agregarInvitacion()">Guardar</button>
+        <button class="btn btn-danger">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
