@@ -10,7 +10,7 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
 const routes: Routes = [
   {path:'', component: LayoutComponent},
   {path:'directorio', component: AgendaComponent},
-  {path: 'invitaciones', component: ListaInvitacionesComponent},
+  {path:'invitaciones', component: ListaInvitacionesComponent},
   {path:'usuario', component: UsuarioComponent},
   {path:'Usuarios',component: UsuariosComponent}
 ];
