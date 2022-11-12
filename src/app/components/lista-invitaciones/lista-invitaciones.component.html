@@ -10,8 +10,8 @@
           <thead>
             <tr>
               <td><i class="bi bi-plus-circle" (click)="agregarInvitacion()"></i></td>
-              <td><i class="bi bi-trash"></i></td>
-              <td><i class="bi bi-pencil-square"></i></td>
+              <td><i class="bi bi-trash" (click)="deleteInvitacion()" *ngIf="isSelected"></i></td>
+              <td><i class="bi bi-pencil-square" (click)="updateInvitacion()" *ngIf="isSelected"></i></td>
             </tr>
           </thead>
         </table>
@@ -20,17 +20,25 @@
             <tr>
               <th>Anfitrión</th>
               <th>Asunto</th>
-              <th># Invitados</th>
+              <th>Duracion</th>
+              <th>Nombre Invitado</th>
               <th>Fecha Evento</th>
-              <th>Detalle</th>
+              <th>Lugar</th>
             </tr>
           </thead>
           <tbody>
-            
+            <tr *ngFor="let invitacion of invitaciones; let i = index" (click)="selectRow(i)" [class.selected]= "i == HighlightRow" >
+              <td>{{invitacion.anfitrion}}</td>
+              <td>{{invitacion.asunto}}</td>
+              <td>{{invitacion.duracion}}</td>
+              <td>{{invitacion.nombreInvitado}}</td>
+              <td>{{invitacion.fechaEvento |date}}&nbsp;{{invitacion.horaEvento}}</td>
+              <td>{{invitacion.lugar}}</td>
+            </tr>
           </tbody>
         </table>
         <div style="margin-top: 30px;">
-          <app-agregar-invitacion *ngIf="isAdd"></app-agregar-invitacion>
+          <app-agregar-invitacion *ngIf="isAdd" [invitacion]="invitacion" (cancelStatus)="cancelStatus($event)"></app-agregar-invitacion>
         </div>
       </div>
     </div>

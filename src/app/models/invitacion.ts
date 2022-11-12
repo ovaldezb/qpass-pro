@@ -1,6 +1,6 @@
 export class Invitacion{
   constructor(
-    public id:string="",
+    public _id:string="",
     public anfitrion:string,
     public asunto: string,
     public duracion: number,
