@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Output,EventEmitter } from '@angular/core';
 import { Invitacion } from 'src/app/models/invitacion';
 import { InvitacionesService } from 'src/app/services/invitaciones/invitaciones.service';
+import { Constants } from '../../services/constants';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -17,18 +18,18 @@ export class AgregarInvitacionComponent implements OnInit {
   constructor(private invitacionService: InvitacionesService) { }
 
   ngOnInit(): void {
-    console.log(this.invitacion._id);
+    this.action = Constants.GUARDAR
     if(this.invitacion._id !== ''){
-      this.action = 'Actualizar';
+      this.action = Constants.ACTUALIZAR;
     }
   }
 
   agregarInvitacion():void{
-    if(this.action==='Guardar'){
+    if(this.action===Constants.GUARDAR){
       Swal.fire({
         title:'Desea agregar ésta Invitación?',
         showCancelButton:true,
-        confirmButtonText:'Agregar'
+        confirmButtonText:Constants.AGREGAR
       }).then((result)=>{
         if(result.isConfirmed){
           this.invitacionService.addInvitation(this.invitacion).subscribe((res)=>{
@@ -40,7 +41,7 @@ export class AgregarInvitacionComponent implements OnInit {
       Swal.fire({
         title:'Desea actualizar ésta Invitacion?',
         showCancelButton:true,
-        confirmButtonText:'Actualizar'
+        confirmButtonText:Constants.ACTUALIZAR
       }).then((result)=>{
         if(result.isConfirmed){
           this.invitacionService.updateInvitacion(this.invitacion._id,this.invitacion).subscribe((res)=>{
