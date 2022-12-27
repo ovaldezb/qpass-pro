@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <div class="w-auto p-3 fs-1 text-center" style="background-color: rgb(238, 100, 100);">Nueva Invitación</div>
+      <div class="w-auto p-3 fs-1 text-center" style="background-color: rgb(238, 100, 100);">{{title}}</div>
     </div>
   </div>
   <div class="row">
@@ -53,6 +53,9 @@
           <div class="form-check">
             <input class="form-check-input" type="checkbox" [(ngModel)]="invitacion.notificarEntrada">
             <label for="" class="form-check-label">Notificar entrada</label>
+          </div>
+          <div class="mb-3" *ngIf="isQR">
+            <qr-code [value]="invitacionQR"></qr-code>
           </div>
         </div>
       </div>

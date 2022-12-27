@@ -75,7 +75,8 @@ export class ListaInvitacionesComponent implements OnInit {
     this.isList = true;
     this.isAdd = false;
     this.HighlightRow = -1;
-    console.log(event);
+    this.invitacion = new Invitacion("","","",0,"","","", new Date(),0, "","",false);
+    //console.log(event);
     if(event.load){
       this.loadInvitaciones();
     }
