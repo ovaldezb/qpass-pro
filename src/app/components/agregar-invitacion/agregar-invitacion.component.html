@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <div class="w-auto p-3 fs-1 text-center" style="background-color: rgb(238, 100, 100);">Nueva Invitación</div>
+      <div class="w-auto p-3 fs-1 text-center" style="background-color: rgb(238, 100, 100);">{{title}}</div>
     </div>
   </div>
   <div class="row">
@@ -54,6 +54,9 @@
             <input class="form-check-input" type="checkbox" [(ngModel)]="invitacion.notificarEntrada">
             <label for="" class="form-check-label">Notificar entrada</label>
           </div>
+          <div class="mb-3" *ngIf="isQR">
+            <qr-code [value]="invitacionQR"></qr-code>
+          </div>
         </div>
       </div>
       
@@ -62,8 +65,8 @@
   <div class="row justify-content-end">
     <div class="col">
       <div class="button-group" role="group" aria-label="Basic Example">
-        <button class="btn btn-primary" (click)="agregarInvitacion()">Guardar</button>
-        <button class="btn btn-danger">Cancelar</button>
+        <button class="btn btn-primary" (click)="agregarInvitacion()">{{action}}</button>
+        <button class="btn btn-danger" (click)="cancelAction()">Cancelar</button>
       </div>
     </div>
   </div>

@@ -1,33 +1,45 @@
 <app-navbar></app-navbar>
-<div class="container">
-  <div class="row">
-    <div class="col-2"><app-left-menu></app-left-menu></div>
-    <div class="col-6" style="margin-top: 20px;">
-      <table *ngIf="isList" style="margin-top: 30px;" class="table">
-        <thead>
-          <tr>
-            <td><i class="bi bi-plus-circle" (click)="agregarInvitacion()"></i></td>
-            <td><i class="bi bi-trash"></i></td>
-            <td><i class="bi bi-pencil-square"></i></td>
-          </tr>
-        </thead>
-      </table>
-      <table *ngIf="isList" class="table table-hover">
-        <thead>
-          <tr>
-            <th>Anfitrión</th>
-            <th>Asunto</th>
-            <th># Invitados</th>
-            <th>Fecha Evento</th>
-            <th>Detalle</th>
-          </tr>
-        </thead>
-        <tbody>
-          
-        </tbody>
-      </table>
-      <div style="margin-top: 30px;">
-        <app-agregar-invitacion *ngIf="isAdd"></app-agregar-invitacion>
+<div class="container-fluid">
+  <div class="row flewx-nowrap">
+    <div class="col-auto col-md-auto col-xl-auto px-sm-2 px-0 bg-dark">
+      <app-left-menu></app-left-menu>
+    </div>
+    <div class="col py-3">
+      <div class="container">
+        <table *ngIf="isList" class="table">
+          <thead>
+            <tr>
+              <td><i class="bi bi-plus-circle" (click)="agregarInvitacion()"></i></td>
+              <td><i class="bi bi-trash" (click)="deleteInvitacion()" *ngIf="isSelected"></i></td>
+              <td><i class="bi bi-pencil-square" (click)="updateInvitacion()" *ngIf="isSelected"></i></td>
+            </tr>
+          </thead>
+        </table>
+        <table *ngIf="isList" class="table table-hover">
+          <thead>
+            <tr>
+              <th>Anfitrión</th>
+              <th>Asunto</th>
+              <th>Duracion</th>
+              <th>Nombre Invitado</th>
+              <th>Fecha Evento</th>
+              <th>Lugar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let invitacion of invitaciones; let i = index" (click)="selectRow(i)" [class.selected]= "i == HighlightRow" >
+              <td>{{invitacion.anfitrion}}</td>
+              <td>{{invitacion.asunto}}</td>
+              <td>{{invitacion.duracion}}</td>
+              <td>{{invitacion.nombreInvitado}}</td>
+              <td>{{invitacion.fechaEvento |date}}&nbsp;{{invitacion.horaEvento}}</td>
+              <td>{{invitacion.lugar}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="margin-top: 30px;">
+          <app-agregar-invitacion *ngIf="isAdd" [invitacion]="invitacion" (cancelStatus)="cancelStatus($event)"></app-agregar-invitacion>
+        </div>
       </div>
     </div>
   </div>

@@ -1,20 +1,74 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output,EventEmitter } from '@angular/core';
 import { Invitacion } from 'src/app/models/invitacion';
+import { InvitacionesService } from 'src/app/services/invitaciones/invitaciones.service';
+import { Global } from '../../services/global';
+import Swal from 'sweetalert2';
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-agregar-invitacion',
   templateUrl: './agregar-invitacion.component.html',
-  styleUrls: ['./agregar-invitacion.component.scss']
+  styleUrls: ['./agregar-invitacion.component.scss'],
+  providers: [InvitacionesService],
 })
 export class AgregarInvitacionComponent implements OnInit {
 
-  public invitacion:Invitacion=new Invitacion("", "Omar","Invitacion",10,"","","", new Date(),0, "","area común",true);
-  constructor() { }
+  @Input() invitacion : Invitacion=new Invitacion("", "","",0,"","","", new Date(),0, "","",false);
+  @Output() cancelStatus = new EventEmitter();
+  public action:String="Guardar";
+  public isQR:boolean=false;
+  public invitacionQR:string="";
+  public title:string="Nueva Invitación";
+  constructor(private invitacionService: InvitacionesService) { }
 
   ngOnInit(): void {
+    this.action = Global.GUARDAR
+    this.isQR = false;
+    console.log(this.invitacion);
+    if(this.invitacion._id !== ''){
+      this.action = Global.ACTUALIZAR;
+      this.title="Actualizar Invitación";
+      this.isQR = true;
+      const inv = [{
+        'anfitrion':this.invitacion.anfitrion,
+        'invitado':this.invitacion.nombreInvitado,
+        'fechaEvento':this.
+      }];
+      var encrypted = CryptoJS.AES.encrypt(JSON.stringify(inv), "QWxwaGFDZW50YXVyeTMuMTQuMTY=").toString();
+      this.invitacionQR = encrypted;
+    }
   }
 
   agregarInvitacion():void{
-    console.log(this.invitacion);
+    if(this.action===Global.GUARDAR){
+      Swal.fire({
+        title:'Desea agregar ésta Invitación?',
+        showCancelButton:true,
+        confirmButtonText:Global.AGREGAR
+      }).then((result)=>{
+        if(result.isConfirmed){
+          this.invitacionService.addInvitation(this.invitacion).subscribe((res)=>{
+            this.cancelStatus.emit({load:true});
+          });
+        }
+      });
+    }else{
+      Swal.fire({
+        title:'Desea actualizar ésta Invitacion?',
+        showCancelButton:true,
+        confirmButtonText:Global.ACTUALIZAR
+      }).then((result)=>{
+        if(result.isConfirmed){
+          this.invitacionService.updateInvitacion(this.invitacion._id,this.invitacion).subscribe((res)=>{
+            this.cancelStatus.emit({load:true});
+          });
+        }
+      });
+    }
+  }
+
+  cancelAction():void{
+    this.invitacion = new Invitacion("", "","",0,"","","", new Date(),0, "","",false);
+    this.cancelStatus.emit({load:false});
   }
 }

@@ -22,7 +22,7 @@ import { UsuariosService } from './APIv1/usuarios.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ListaUsuariosComponent } from './components/lista-usuarios/lista-usuarios.component';
 import { AddEditUsuariosComponent } from './components/add-edit-usuarios/add-edit-usuarios.component';
-
+import { QRCodeModule } from 'angular2-qrcode';
 
 @NgModule({
   declarations: [
@@ -45,7 +45,8 @@ import { AddEditUsuariosComponent } from './components/add-edit-usuarios/add-edi
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    QRCodeModule
   ],
   providers: [UsuariosService],
   bootstrap: [AppComponent]
