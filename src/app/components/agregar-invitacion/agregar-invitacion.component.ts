@@ -32,7 +32,7 @@ export class AgregarInvitacionComponent implements OnInit {
       const inv = [{
         'anfitrion':this.invitacion.anfitrion,
         'invitado':this.invitacion.nombreInvitado,
-        'fechaEvento':this.
+        'fechaEvento':this.invitacion.fechaEvento
       }];
       var encrypted = CryptoJS.AES.encrypt(JSON.stringify(inv), "QWxwaGFDZW50YXVyeTMuMTQuMTY=").toString();
       this.invitacionQR = encrypted;
