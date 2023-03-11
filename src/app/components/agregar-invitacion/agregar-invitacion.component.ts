@@ -39,6 +39,7 @@ export class AgregarInvitacionComponent implements OnInit {
     }
   }
 
+  
   agregarInvitacion():void{
     if(this.action===Global.GUARDAR){
       Swal.fire({
