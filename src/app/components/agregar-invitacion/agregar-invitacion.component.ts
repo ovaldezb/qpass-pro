@@ -13,7 +13,7 @@ import * as CryptoJS from 'crypto-js';
 })
 export class AgregarInvitacionComponent implements OnInit {
 
-  @Input() invitacion : Invitacion=new Invitacion("", "","",0,"","","", new Date(),0, "","",false);
+  @Input() invitacion : Invitacion=new Invitacion("", "","",0,"","","", new Date(),0, "","",false,'','',new Date(),false);
   @Output() cancelStatus = new EventEmitter();
   public action:String="Guardar";
   public isQR:boolean=false;
@@ -69,7 +69,7 @@ export class AgregarInvitacionComponent implements OnInit {
   }
 
   cancelAction():void{
-    this.invitacion = new Invitacion("", "","",0,"","","", new Date(),0, "","",false);
+    this.invitacion = new Invitacion("", "","",0,"","","", new Date(),0, "","",false,'','',new Date(),false);
     this.cancelStatus.emit({load:false});
   }
 }
