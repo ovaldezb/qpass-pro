@@ -1,16 +1,21 @@
-<div class="form-group row">
-    <div class="col-sm-4">
-        <label class="col-sm-2 col-form-label">Nombre: </label>
-        <input type="text" class="form-control" />
+<div class="modal-body">
+    <div class="form-group row" id="users-form">
+        <form>
+            <table class="table-info table-striped">
+
+            </table>
+        </form>
+
+    </div>
+</div>
+
+<div class="modal-footer">
+
+    <div class="spinner-border text-secondary" role="status">
+        <span class="sr-only"></span>
     </div>
 
-    <div class="col-sm-5">
-        <label class="col-sm-2 col-form-label">Apellidos: </label>
-        <input type="text" class="form-control" />
-    </div>
-
-    <div class="col-sm-5">
-        <label class="col-sm-2 col-form-label">Direccion: </label>
-        <input type="text" class="form-control" />
-    </div>
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModal()">Cancelar </button>
+    <!-- <button *ngIf="accGroup2Form.value.selectedAccounts" type="submit" class="btn btn-primary"
+        data-bs-dismiss="modal">Submit</button> -->
 </div>
