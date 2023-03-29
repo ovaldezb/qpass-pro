@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CookieService } from 'ngx-cookie-service'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { AgregarInvitacionComponent } from './components/agregar-invitacion/agregar-invitacion.component';
 import { ListaInvitacionesComponent } from './components/lista-invitaciones/lista-invitaciones.component';
 import { ReactiveFormsModule } from '@angular/forms';
+
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 
 //Servicios -> Models
@@ -26,6 +28,8 @@ import { QRCodeModule } from 'angular2-qrcode';
 import { CondominiosComponent } from './components/condominios/condominios.component';
 import { ListaCondominiosComponent } from './components/lista-condominios/lista-condominios.component';
 import { AddEditCondominiosComponent } from './components/add-edit-condominios/add-edit-condominios.component';
+import { LoginComponent } from './components/login/login.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +48,9 @@ import { AddEditCondominiosComponent } from './components/add-edit-condominios/a
     AddEditUsuariosComponent,
     CondominiosComponent,
     ListaCondominiosComponent,
-    AddEditCondominiosComponent
+    AddEditCondominiosComponent,
+    LoginComponent,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +60,7 @@ import { AddEditCondominiosComponent } from './components/add-edit-condominios/a
     HttpClientModule,
     QRCodeModule
   ],
-  providers: [UsuariosService],
+  providers: [UsuariosService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

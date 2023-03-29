@@ -1,13 +1,24 @@
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">{{ModalTitle}}</h5>
+                <!-- Modal  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+            </div>
+            <app-add-edit-condominios [mission]="ModalTitle" *ngIf="taskMission"></app-add-edit-condominios>
+        </div>
+    </div>
+</div>
+
 <div class="col-6">
     <table class="table table-striped">
         <thead>
             <tr>
                 <th><i class="bi-5 bi-trash"></i></th>
-                <th><i class="bi-5 bi-plus-circle"  data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop" data-placement="top" title="Agregar"></i></th>
-                <th><i class="bi-5 bi-pencil-square" data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop" data-placement="top" title="Editar"></i></th>
-
+                <th><i class="bi-5 bi-plus-circle" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                        data-placement="top" title="Agregar" (click)="agregarCondo()"></i></th>
             </tr>
             <tr>
                 <th>id</th>
@@ -16,26 +27,23 @@
                 <th>Condominio</th>
                 <th>Direccion</th>
                 <th>Tipo de Usuario</th>
-
+                <th>Operacion</th>
             </tr>
         </thead>
         <tbody>
-
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><i class="bi-5 bi-trash"></i>
+                    <i class="bi-5 bi-pencil-square" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                        data-placement="top" title="Editar"></i>
+                </td>
+            </tr>
         </tbody>
     </table>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel"></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-
-        </div>
-    </div>
-</div>
