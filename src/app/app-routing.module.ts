@@ -6,10 +6,12 @@ import { UsuarioComponent } from './components/usuario/usuario.component';
 import { ListaInvitacionesComponent } from './components/lista-invitaciones/lista-invitaciones.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { CondominiosComponent } from './components/condominios/condominios.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 const routes: Routes = [
-  { path:'', component: LayoutComponent },
+  { path:'', component: LoginComponent },
+  { path:'inicio', component: LayoutComponent },
   { path:'directorio', component: AgendaComponent },
   { path:'invitaciones', component: ListaInvitacionesComponent },
   { path:'usuario', component: UsuarioComponent },

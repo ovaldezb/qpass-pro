@@ -26,6 +26,8 @@ import { QRCodeModule } from 'angular2-qrcode';
 import { CondominiosComponent } from './components/condominios/condominios.component';
 import { ListaCondominiosComponent } from './components/lista-condominios/lista-condominios.component';
 import { AddEditCondominiosComponent } from './components/add-edit-condominios/add-edit-condominios.component';
+import { LoginComponent } from './components/login/login.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { AddEditCondominiosComponent } from './components/add-edit-condominios/a
     AddEditUsuariosComponent,
     CondominiosComponent,
     ListaCondominiosComponent,
-    AddEditCondominiosComponent
+    AddEditCondominiosComponent,
+    LoginComponent,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,
