@@ -23,6 +23,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { ListaUsuariosComponent } from './components/lista-usuarios/lista-usuarios.component';
 import { AddEditUsuariosComponent } from './components/add-edit-usuarios/add-edit-usuarios.component';
 import { QRCodeModule } from 'angular2-qrcode';
+import { CondominiosComponent } from './components/condominios/condominios.component';
+import { ListaCondominiosComponent } from './components/lista-condominios/lista-condominios.component';
+import { AddEditCondominiosComponent } from './components/add-edit-condominios/add-edit-condominios.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,10 @@ import { QRCodeModule } from 'angular2-qrcode';
     ListaInvitacionesComponent,
     UsuariosComponent,
     ListaUsuariosComponent,
-    AddEditUsuariosComponent
+    AddEditUsuariosComponent,
+    CondominiosComponent,
+    ListaCondominiosComponent,
+    AddEditCondominiosComponent
   ],
   imports: [
     BrowserModule,
