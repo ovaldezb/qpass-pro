@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-edit-condominios',
@@ -8,10 +9,20 @@ import { Component, OnInit, Input } from '@angular/core';
 export class AddEditCondominiosComponent implements OnInit {
 
   @Input() mission = ''; 
+  
+  condosGroupForm!: FormGroup;
 
-  constructor() { }
+  constructor(private condosInfo: FormBuilder) { }
 
   ngOnInit(): void {
+
+    this.condosGroupForm = this.condosInfo.group({
+
+      condominio: ['', Validators.required],
+      direccion: ['', Validators.required]
+
+    });
+
   }
 
 

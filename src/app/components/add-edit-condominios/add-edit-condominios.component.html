@@ -1,8 +1,22 @@
 <div class="modal-body">
     <div class="form-group row" id="users-form">
-        <form>
+        <form [formGroup]="condosGroupForm" class="p-3 mt-3">
             <table class="table-info table-striped">
+                <tr>
+                    <td><span class="input-group-text" id="basic-addon3">Condominio</span>
+                        <input formControlName="condominio" type="text" name="condominio" id="condominio"
+                            placeholder="Nombre del Condominio" autocomplete="off" class="form-control"
+                            id="basic-addon3" aria-describedby="basic-addon3">
+                    </td>
 
+                </tr>
+                <tr>
+                    <td><span class="input-group-text" id="basic-addon3">Direccion</span>
+                        <input formControlName="direccion" type="text" name="direccion" id="direccion"
+                            placeholder="Direccion del Condominio" autocomplete="off" class="form-control"
+                            id="basic-addon3" aria-describedby="basic-addon3">
+                    </td>
+                </tr>
             </table>
         </form>
 
@@ -16,6 +30,5 @@
     </div>
 
     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModal()">Cancelar </button>
-    <!-- <button *ngIf="accGroup2Form.value.selectedAccounts" type="submit" class="btn btn-primary"
-        data-bs-dismiss="modal">Submit</button> -->
+    <button *ngIf="condosGroupForm.value.condominio" type="submit" class="btn btn-primary" data-bs-dismiss="modal">Submit</button>
 </div>

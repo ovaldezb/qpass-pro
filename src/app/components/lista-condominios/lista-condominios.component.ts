@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-lista-condominios',
@@ -10,18 +10,14 @@ export class ListaCondominiosComponent implements OnInit {
 
   ModalTitle: string = '';
   taskMission: boolean = true;
-  condosGroupForm!: FormGroup;
-  condominio: string = '';
 
-  constructor(private condosInfo: FormBuilder) { }
+  condominio: string = '';
+  direccion: string = '';
+
+  constructor() { }
 
   ngOnInit(): void {
 
-    this.condosGroupForm = this.condosInfo.group({
-
-      condominio: ['', Validators.required]
-
-    });
 
   }
 
