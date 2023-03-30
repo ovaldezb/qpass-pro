@@ -14,15 +14,15 @@ export class InvitacionesService{
 }
 
   addInvitation(invitacion:Invitacion):Observable<any>{
-    return this._http.post(this.url,JSON.stringify(invitacion));
+    return this._http.post(this.url,JSON.stringify(invitacion),{headers:this.headers});
   }
 
   getInvitaciones():Observable<any>{
-    return this._http.get(this.url);
+    return this._http.get(this.url,{headers:this.headers});
   }
 
   deleteInvitacion(idInvitacion:String):Observable<any>{
-    return this._http.delete(this.url+'/'+idInvitacion);
+    return this._http.delete(this.url+'/'+idInvitacion,{headers:this.headers});
   }
 
   updateInvitacion(idInvitacion:String, invitacion:Invitacion):Observable<any>{
