@@ -1,6 +1,6 @@
 <div class="modal-body">
     <div class="form-group row" id="users-form">
-        <form [formGroup]="condosGroupForm" class="p-3 mt-3">
+        <form [formGroup]="condosGroupForm" (ngSubmit)="onFormSubmit()" class="p-3 mt-3">
             <table class="table-info table-striped">
                 <tr>
                     <td><span class="input-group-text" id="basic-addon3">Condominio</span>
@@ -30,5 +30,5 @@
     </div>
 
     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModal()">Cancelar </button>
-    <button *ngIf="condosGroupForm.value.condominio" type="submit" class="btn btn-primary" data-bs-dismiss="modal">Submit</button>
+    <button *ngIf="condosGroupForm.value.condominio" type="submit" class="btn btn-primary" data-bs-dismiss="modal" (click)="onFormSubmit()">Submit</button>
 </div>
