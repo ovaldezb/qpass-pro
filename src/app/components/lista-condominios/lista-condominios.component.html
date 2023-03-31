@@ -1,16 +1,4 @@
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">{{ModalTitle}}</h5>
-                <!-- Modal  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
-            </div>
-            <app-add-edit-condominios [mission]="ModalTitle" *ngIf="taskMission"></app-add-edit-condominios>
-        </div>
-    </div>
-</div>
+
 
 <div class="col-6">
     <table class="table table-striped">
@@ -31,19 +19,29 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+            <tr  *ngFor="let condo of listaCondos; let i = index" >
+            <td role="button">{{condo.id}}</td>
+            <td role="button">{{condo.Condominio}}</td>
+            <td role="button">{{condo.Direccion}}</td>
                 <td><i class="bi-5 bi-trash"></i>
                     <i class="bi-5 bi-pencil-square" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                        data-placement="top" title="Editar"></i>
+                        data-placement="top" title="Editar" (click)="editarCondo(condo)"></i>
                 </td>
             </tr>
         </tbody>
     </table>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">{{ModalTitle}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()"></button>
+            </div>
+            <app-add-edit-condominios [mission]="ModalTitle" [condo]="condominio" *ngIf="taskMission" ></app-add-edit-condominios>
+        </div>
+    </div>
+</div>

@@ -3,8 +3,11 @@
         <form [formGroup]="condosGroupForm" (ngSubmit)="onFormSubmit()" class="p-3 mt-3">
             <table class="table-info table-striped">
                 <tr>
-                    <td><span class="input-group-text" id="basic-addon3">Condominio</span>
-                        <input formControlName="condominio" type="text" name="condominio" id="condominio"
+                    <td>
+                        
+                        <input type="hidden" class="form-control" formControlName="condoId" />
+                        <span class="input-group-text" id="basic-addon3">Condominio</span>
+                        <input formControlName="condominio" type="text" id="condominio"
                             placeholder="Nombre del Condominio" autocomplete="off" class="form-control"
                             id="basic-addon3" aria-describedby="basic-addon3">
                     </td>
@@ -12,7 +15,7 @@
                 </tr>
                 <tr>
                     <td><span class="input-group-text" id="basic-addon3">Direccion</span>
-                        <input formControlName="direccion" type="text" name="direccion" id="direccion"
+                        <input formControlName="direccion" type="text" id="direccion"
                             placeholder="Direccion del Condominio" autocomplete="off" class="form-control"
                             id="basic-addon3" aria-describedby="basic-addon3">
                     </td>
