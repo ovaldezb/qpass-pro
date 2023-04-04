@@ -1,6 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Validators } from '@angular/forms';
+import { OutletContext } from '@angular/router';
+import { Condominio } from 'src/app/models/condominio';
 import { CondominiosService } from 'src/app/services/condominios/condominios.service';
+
 
 
 @Component({
@@ -11,52 +14,54 @@ import { CondominiosService } from 'src/app/services/condominios/condominios.ser
 export class AddEditCondominiosComponent implements OnInit {
 
   @Input() mission = ''; 
-  @Input() condo: any;
+  @Input() condo: Condominio = new Condominio('', '', '', 0);
+  @Output() update = new EventEmitter();
 
-  condosGroupForm!: FormGroup;
+  //condosGroupForm!: FormGroup;
   apiResponse: any;
   apiRequest: any;
-  taskMission: boolean = true;
-  listaCondos: any;
+
+
+   
   
-  
-  
-  constructor(private condosInfo: FormBuilder,
-              private service: CondominiosService,
+  constructor(private service: CondominiosService,
            
               ) { }
 
   ngOnInit(): void {
 
-    console.log(this.condo);
-    console.log(this.mission);
-    
+    this.condo = this.condo;
+
+
     if (this.mission == "Editar Condominio"){
 
-      console.log("entra aqui")
+      console.log("entra Editar")
 
-      this.condosGroupForm = this.condosInfo.group({
+      
+
+    /*  this.condosGroupForm = this.condosInfo.group({
 
         condoId: [this.condo["id"], Validators.required],
         condominio: [this.condo["Condominio"], Validators.required],
+        telefono: [this.condo["Telefono"], Validators.required],
         direccion: [this.condo["Direccion"], Validators.required]
 
-      });
+      });*/
 
 
     }
     else if (this.mission == "Agregar Condominio"){
 
-    this.condosGroupForm = this.condosInfo.group({
 
-      condoId: ['', Validators.required],
-      condominio: ['', Validators.required],
-      direccion: ['', Validators.required]
+      //this.condo = new Condominio('', '', '', 0);
 
-    });
     
     }   
-    
+  
+  
+  //this.condosGroupForm.reset();
+ 
+
 
   }
 
@@ -65,42 +70,47 @@ export class AddEditCondominiosComponent implements OnInit {
   onFormSubmit() {
 
 
-    this.apiRequest = {"Condominio": this.condosGroupForm.value.condominio,
-                       "Direccion": this.condosGroupForm.value.direccion 
-                      }
-
-    console.log(this.apiRequest); 
-
-    this.service.addNewCondo(this.apiRequest).subscribe(res => {
-
-      this.apiResponse = res;
-      console.log(this.apiResponse);    
-
-    });
-
-
-    this.condosGroupForm.reset();
-  
-
-  }
-
-  closeModal() {
-
-
-    this.condosGroupForm.reset();
-    this.taskMission = false;
+    console.log(this.mission);
     
 
-  }
+    if (this.mission == "Agregar Condominio") {
 
-  refreshCondos() {
+      console.log(this.condo);
+   /* this.apiRequest = {"Condominio": this.condosGroupForm.value.condominio,
+                       "Direccion": this.condosGroupForm.value.direccion,
+                       "Telefono": this.condosGroupForm.value.telefono 
+                      }*/
 
-    this.service.getCondos().subscribe(data => {
 
-      this.listaCondos = data;
+    this.service.addNewCondo(this.condo).subscribe(res => {
+
+      this.apiResponse = res;
+      this.update.emit({ resUpdate: true });
 
     });
-  }
 
+    }
+
+    else if (this.mission == "Editar Condominio") {
+
+      console.log("editar");
+     /*  this.apiRequest = {
+        "Condominio": this.condosGroupForm.value.condominio,
+        "Direccion": this.condosGroupForm.value.direccion,
+        "Telefono": this.condosGroupForm.value.telefono
+      }
+     this.condosGroupForm.reset();*/
+      
+      
+      this.service.updateCondominio(this.condo.id, this.condo).subscribe(res => {
+
+        this.apiResponse = res;
+        
+
+      });
+
+    }  
+
+  }
 
 }
