@@ -64,9 +64,6 @@ export class ListaCondominiosComponent implements OnInit {
 
     }
 
-    
-
-
 
   }
 
@@ -78,8 +75,6 @@ export class ListaCondominiosComponent implements OnInit {
   }
 
   refreshCondos() {
-
-    
 
     this.service.getCondos().subscribe(data => {
     

@@ -21,7 +21,7 @@ export class LoginFormComponent implements OnInit {
   loading: boolean = false;
 
   constructor(private cec: FormBuilder,
-    private router: Router,
+              private router: Router,
     //private service: LoginService,
     private cookie: CookieService
   ) { }

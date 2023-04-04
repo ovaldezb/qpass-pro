@@ -1,9 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Validators } from '@angular/forms';
-import { OutletContext } from '@angular/router';
 import { Condominio } from 'src/app/models/condominio';
 import { CondominiosService } from 'src/app/services/condominios/condominios.service';
-
 
 
 @Component({
@@ -11,6 +8,7 @@ import { CondominiosService } from 'src/app/services/condominios/condominios.ser
   templateUrl: './add-edit-condominios.component.html',
   styleUrls: ['./add-edit-condominios.component.scss']
 })
+
 export class AddEditCondominiosComponent implements OnInit {
 
   @Input() mission = ''; 
@@ -21,8 +19,6 @@ export class AddEditCondominiosComponent implements OnInit {
   apiResponse: any;
   apiRequest: any;
 
-
-   
   
   constructor(private service: CondominiosService,
            

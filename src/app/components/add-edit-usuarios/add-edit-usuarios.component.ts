@@ -1,44 +1,59 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ListaUsuariosComponent } from '../lista-usuarios/lista-usuarios.component';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Usuario } from 'src/app/models/usuario'; 
+import { UsuariosfinalesService } from 'src/app/services/usuarios/usuariosfinales.service';
 
 @Component({
   selector: 'app-add-edit-usuarios',
   templateUrl: './add-edit-usuarios.component.html',
   styleUrls: ['./add-edit-usuarios.component.scss']
 })
+
+
 export class AddEditUsuariosComponent implements OnInit {
 
-  public userId: String = "";
-  public Nombre: String = "";
-  public Apellidos: String = "";
-  public Condominio: String = "";
-  public Direccion: String = "";
-  public userCreate: any = [];
+  @Input() mission = '';
+  @Input() user: Usuario = new Usuario('', '', '', '', '', '', '', '', 0);
+  @Output() update = new EventEmitter();
+  apiResponse: any;
 
-  constructor(private service: ListaUsuariosComponent) { }
 
- // @Input() UserSelected:any;
+  constructor(private service: UsuariosfinalesService) { }
 
-  userObject: any  = this.service.UserSelected;
   
   ngOnInit(): void {
 
-    //this.userId = this.UserSelected;
-    this.userId = this.userObject["id"];
-    console.log("Este es el chingon " + this.userId);
-    
-    this.Nombre = this.userObject["Nombre"];
-    this.Apellidos = this.userObject["Apellidos"];
-    this.Direccion = this.userObject["Direccion"];
-    this.Condominio = this.userObject["Condominio"];
-
-    this.userCreate = this.Nombre;
+    this.user = this.user;
     
   }
 
-  test(){
 
-    console.log("");
+  onFormSubmit() {
+
+
+    if (this.mission == "Agregar Usuario") {
+
+
+      this.service.addNewUser(this.user).subscribe(res => {
+
+        this.apiResponse = res;
+        this.update.emit({ resUpdate: true });
+
+      });
+
+    }
+
+    else if (this.mission == "Editar Usuario") {
+
+
+      this.service.updateUser(this.user.id, this.user).subscribe(res => {
+
+        this.apiResponse = res;
+
+
+      });
+
+    }
+
   }
 
 }

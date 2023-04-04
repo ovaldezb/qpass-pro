@@ -4,7 +4,7 @@
         <tr>
             <th><i class="bi-5 bi-trash"></i></th>
             <th><i class="bi-5 bi-plus-circle" (click)="addUserClick()" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-placement="top" title="Agregar"></i></th>
-            <th><i class="bi-5 bi-pencil-square" (click)="editUserClick()" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-placement="top" title="Editar"></i></th>
+            <th></th>
 
         </tr>
         <tr>
@@ -14,16 +14,25 @@
             <th>Condominio</th>
             <th>Direccion</th>
             <th>Tipo de Usuario</th>
-            
+            <th>Fecha de Nacimiento</th>
+            <th>RFC o CURP</th>
+            <th>Telefono</th>
+            <th>Operacion</th>
         </tr>
     </thead>
     <tbody>
-        <tr  *ngFor="let usuario of ListaUsuarios; let i = index" (click)="selectRow(i)" [class.selected]= "i == HighlightRow" >
+        <tr  *ngFor="let usuario of usuariosFinales;">
             <td>{{usuario.id}}</td>
             <td role="button">{{usuario.Nombre}}</td>
             <td role="button">{{usuario.Apellidos}}</td>
             <td role="button">{{usuario.Condominio}}</td>
             <td role="button">{{usuario.Direccion}}</td>
+            <td role="button">{{usuario.tipoUsuario}}</td>
+            <td role="button">{{usuario.fechaNacimiento}}</td>
+            <td role="button">{{usuario.rfcOrcurp}}</td>
+            <td role="button">{{usuario.telefono}}</td>
+            <td><i class="bi-5 bi-pencil-square" (click)="editUserClick(usuario)" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                data-placement="top" title="Editar"></i></td>
         </tr>
     </tbody>
 </table>
@@ -36,17 +45,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">{{ModalTitle}}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    (click)="closeModal()"></button>
             </div>
-            <div class="modal-body">
-                <app-add-edit-usuarios OperacionUsuario="userOperation" *ngIf="ActivateAddEditUser"></app-add-edit-usuarios>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModal()">Cancelar</button>
-                <button type="button" class="btn btn-primary" *ngIf="userOperation.id ==0 " (click)="crearUsuario()">Crear</button>
-                <button type="button" class="btn btn-primary" *ngIf="userOperation.id !=0 " (click)="editarUsuario()">Crear</button>
-            </div>
-            
+            <app-add-edit-usuarios [mission]="ModalTitle" [user]="newUsuario" (update)="respuestaUpdate($event)"
+                *ngIf="taskMission"></app-add-edit-usuarios>
         </div>
     </div>
 </div>
