@@ -15,6 +15,8 @@ export class Invitacion{
     public placas: string,
     public tarjeton: string,
     public horaIngreso: Date,
-    public dejaId: boolean
+    public dejaId: boolean,
+    public esRecurrente:boolean,
+    public numRepeticiones:number
   ){}
 }

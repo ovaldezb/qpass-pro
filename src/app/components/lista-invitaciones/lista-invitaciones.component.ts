@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Invitacion } from 'src/app/models/invitacion';
 import { InvitacionesService } from 'src/app/services/invitaciones/invitaciones.service';
 import { Router } from '@angular/router';
-import { error } from '@angular/compiler/src/util';
 import swal from 'sweetalert2';
 
 @Component({
@@ -18,7 +17,7 @@ export class ListaInvitacionesComponent implements OnInit {
   public isAdd:boolean=false;
   public isList:boolean=true;
   public invitaciones:Invitacion[]=[];
-  public invitacion:Invitacion = new Invitacion("", "","",0,"","","", new Date(),0, "","",false,'','',new Date(),false);
+  public invitacion:Invitacion = new Invitacion("", "","",0,"","","", new Date(),0, "","",false,'','',new Date(),false,false,0);
   
   constructor(private _router : Router, private invitacionService: InvitacionesService) { 
 
@@ -75,7 +74,7 @@ export class ListaInvitacionesComponent implements OnInit {
     this.isList = true;
     this.isAdd = false;
     this.HighlightRow = -1;
-    this.invitacion = new Invitacion("", "","",0,"","","", new Date(),0, "","",false,'','',new Date(),false);
+    this.invitacion = new Invitacion("", "","",0,"","","", new Date(),0, "","",false,'','',new Date(),false,false,0);
     //console.log(event);
     if(event.load){
       this.loadInvitaciones();
