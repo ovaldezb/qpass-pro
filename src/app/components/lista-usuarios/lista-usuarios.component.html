@@ -2,8 +2,8 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th><i class="bi-5 bi-trash"></i></th>
-            <th><i class="bi-5 bi-plus-circle" (click)="addUserClick()" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-placement="top" title="Agregar"></i></th>
+            <th></th>
+            <th><i class="bi-5 bi-plus-circle" (click)="addUserClick()" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-placement="top" title={{ModalTitle}}></i></th>
             <th></th>
 
         </tr>
@@ -21,7 +21,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr  *ngFor="let usuario of usuariosFinales;">
+        <tr *ngFor="let usuario of usuariosFinales;">
             <td>{{usuario.id}}</td>
             <td role="button">{{usuario.Nombre}}</td>
             <td role="button">{{usuario.Apellidos}}</td>
@@ -31,7 +31,8 @@
             <td role="button">{{usuario.fechaNacimiento}}</td>
             <td role="button">{{usuario.rfcOrcurp}}</td>
             <td role="button">{{usuario.telefono}}</td>
-            <td><i class="bi-5 bi-pencil-square" (click)="editUserClick(usuario)" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+            <td><i class="bi-5 bi-trash" (click)="eliminarUser(usuario.id)"></i>
+                <i class="bi-5 bi-pencil-square" (click)="editUserClick(usuario)" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
                 data-placement="top" title="Editar"></i></td>
         </tr>
     </tbody>

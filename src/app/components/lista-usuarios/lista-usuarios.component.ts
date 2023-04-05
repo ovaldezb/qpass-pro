@@ -44,16 +44,7 @@ export class ListaUsuariosComponent implements OnInit {
     this.taskMission = true;
   }
 
-  crearUsuario(/*private service*/) {
 
-    var palAPI = {"Nombre": "this.userOperation.Nombre"};
-    console.log();
-  }
-
-  editarUsuario(){
-
-
-  }
 
   respuestaUpdate(event: boolean) {
 
@@ -61,6 +52,25 @@ export class ListaUsuariosComponent implements OnInit {
 
     this.refreshUsers();
 
+  }
+
+
+  eliminarUser(user: any) {
+
+    this.taskMission = true;
+    this.ModalTitle = "Eliminar Condominio";
+
+    if (confirm('Estas Seguro?')) {
+
+
+      this.service.deleteUser(user).subscribe(res => {
+
+        this.apiResponse = res;
+        this.refreshUsers();
+
+      });
+
+    }
   }
 
   refreshUsers() {
