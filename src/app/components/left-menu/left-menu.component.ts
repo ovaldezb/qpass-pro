@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CognitoService } from 'src/app/services/cognito.service';
 
 @Component({
   selector: 'app-left-menu',
@@ -7,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeftMenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router, private cognitoService: CognitoService) { }
 
   ngOnInit(): void {
   }
+  
+  private getUserDetails(){
+    this.cognitoService.getUser()
+    .then((user:any)=>{
+      if(user){
+        console.log(user);
 
+      }
+      else{
+        this.router.navigate(['/sign-in']);
+      }
+    })
+    
+  }
+  signOutWithCognito(){
+    this.cognitoService.signOut()
+    .then(()=>{
+      this.router.navigate(["/sign-in"])
+    })
+  }
 }

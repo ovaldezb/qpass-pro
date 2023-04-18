@@ -30,6 +30,9 @@ import { ListaCondominiosComponent } from './components/lista-condominios/lista-
 import { AddEditCondominiosComponent } from './components/add-edit-condominios/add-edit-condominios.component';
 import { LoginComponent } from './components/login/login.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
+import { MessageModalComponent } from './components/message-modal/message-modal.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,10 @@ import { LoginFormComponent } from './components/login-form/login-form.component
     ListaCondominiosComponent,
     AddEditCondominiosComponent,
     LoginComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    SignUpComponent,
+    SignInComponent,
+    MessageModalComponent
   ],
   imports: [
     BrowserModule,
