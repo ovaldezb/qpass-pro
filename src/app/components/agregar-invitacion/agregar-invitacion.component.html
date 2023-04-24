@@ -63,10 +63,10 @@
             </div>
             <div class="mb-3">
               <input class="form-check-input" type="checkbox" name="esRecurrente" [(ngModel)]="invitacion.esRecurrente">
-              <label for="" class="form-check-label">Es recurrente</label>
-              <div>
+              <label for="" class="form-check-label" *ngIf="invitacion.esRecurrente">Es recurrente</label>
+              <div *ngIf="invitacion.esRecurrente">
                 <label for="" class="form-label">Núm de Recurrencias:</label>
-                <select *ngIf="invitacion.esRecurrente" name="" id="" [(ngModel)]="invitacion.numRepeticiones">
+                <select name="" id="" [(ngModel)]="invitacion.numRepeticiones">
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>
