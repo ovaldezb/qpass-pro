@@ -16,7 +16,7 @@ export class UsuariosfinalesService {
 
   getUser(id: any): Observable<any[]> {
 
-    return this.http.get<any>(Global.urlUsuarios + id);
+    return this.http.get<any>(Global.urlUsuarios + "/" + id);
 
   }
 
@@ -34,13 +34,13 @@ export class UsuariosfinalesService {
 
   updateUser(id_: any, modifyUsuario: any) {
 
-    return this.http.put(Global.urlUsuarios + id_, modifyUsuario);
+    return this.http.put(Global.urlUsuarios + "/" + id_, modifyUsuario);
 
   }
 
   deleteUser(id_: any) {
 
-    return this.http.delete(Global.urlUsuarios + id_);
+    return this.http.delete(Global.urlUsuarios + "/" + id_);
 
   }
 

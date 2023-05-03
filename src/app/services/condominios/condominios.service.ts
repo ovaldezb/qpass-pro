@@ -15,7 +15,7 @@ export class CondominiosService {
 
   getCondo(id: any): Observable<any[]> {
 
-    return this.http.get<any>(Global.urlCondominios + id);
+    return this.http.get<any>(Global.urlCondominios + "/" + id);
 
   }
 
@@ -33,13 +33,13 @@ export class CondominiosService {
 
   updateCondominio(id_: any, modifyCondominio: any) {
 
-    return this.http.put(Global.urlCondominios + id_, modifyCondominio);
+    return this.http.put(Global.urlCondominios + "/" + id_, modifyCondominio);
 
   }
 
   deleteCondominio(id_: any) {
 
-    return this.http.delete(Global.urlCondominios + id_);
+    return this.http.delete(Global.urlCondominios + "/" + id_);
 
   }
 
