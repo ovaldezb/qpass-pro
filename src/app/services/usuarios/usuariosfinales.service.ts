@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Global } from '../global';
 
 @Injectable({
   providedIn: 'root'
@@ -15,31 +16,31 @@ export class UsuariosfinalesService {
 
   getUser(id: any): Observable<any[]> {
 
-    return this.http.get<any>(this.API_Url + '/Usuarios/' + id);
+    return this.http.get<any>(Global.urlUsuarios + id);
 
   }
 
   getUsers(): Observable<any[]> {
 
-    return this.http.get<any>(this.API_Url + '/Usuarios');
+    return this.http.get<any>(Global.urlUsuarios);
 
   }
 
   addNewUser(nuevoUsuario: any) {
 
-    return this.http.post(this.API_Url + '/Usuarios/', nuevoUsuario);
+    return this.http.post(Global.urlUsuarios, nuevoUsuario);
 
   }
 
   updateUser(id_: any, modifyUsuario: any) {
 
-    return this.http.put(this.API_Url + '/Usuarios/' + id_, modifyUsuario);
+    return this.http.put(Global.urlUsuarios + id_, modifyUsuario);
 
   }
 
   deleteUser(id_: any) {
 
-    return this.http.delete(this.API_Url + '/Usuarios/' + id_);
+    return this.http.delete(Global.urlUsuarios + id_);
 
   }
 
