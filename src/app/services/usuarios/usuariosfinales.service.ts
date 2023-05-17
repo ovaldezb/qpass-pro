@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Global } from '../global';
 
@@ -8,6 +8,7 @@ import { Global } from '../global';
 })
 export class UsuariosfinalesService {
 
+  private headers = new HttpHeaders().set('Content-Type','application/json');
   constructor(private http: HttpClient) { }
 
 
@@ -28,19 +29,19 @@ export class UsuariosfinalesService {
 
   addNewUser(nuevoUsuario: any) {
 
-    return this.http.post(Global.urlUsuarios, nuevoUsuario);
+    return this.http.post(Global.urlUsuarios, nuevoUsuario, {headers:this.headers});
 
   }
 
   updateUser(id_: any, modifyUsuario: any) {
 
-    return this.http.put(Global.urlUsuarios + "/" + id_, modifyUsuario);
+    return this.http.put(Global.urlUsuarios + "/" + id_, modifyUsuario, {headers:this.headers});
 
   }
 
   deleteUser(id_: any) {
 
-    return this.http.delete(Global.urlUsuarios + "/" + id_);
+    return this.http.delete(Global.urlUsuarios + "/" + id_, {headers:this.headers});
 
   }
 
