@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
-import { CognitoService } from 'src/app/services/cognito.service';
 import { Router } from '@angular/router';
+import { Auth } from 'aws-amplify';
+
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -13,7 +14,7 @@ export class SignUpComponent implements OnInit {
   alertMessage: string = '';
   showAlert: boolean = false;
 
-  constructor(private router: Router, private cognitoService: CognitoService) {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.user = {} as User;
@@ -22,8 +23,15 @@ export class SignUpComponent implements OnInit {
 
   public signUpWithCognito() {
     if (this.user && this.user.email && this.user.password) {
-      this.cognitoService
-        .signUp(this.user)
+      const user = {
+        username: this.user.email,
+        password: this.user.password,
+        attributes: {
+          email: this.user.email,
+          given_name: this.user.givenName,
+        },
+      };
+      Auth.signUp(user)
         .then(() => {
           this.isConfirm = true;
         })
@@ -37,16 +45,18 @@ export class SignUpComponent implements OnInit {
 
   public confirmSignUp() {
     if (this.user) {
-      this.cognitoService.confirmSignUp(this.user)
-      .then(() => {
-        this.router.navigate(['/sign-in']);
+      Auth.confirmSignUp(this.user.email, this.user.code, {
+        forceAliasCreation: true,
       })
-      .catch((error:any)=>{
-        this.displayAlert(error.message);
-      });
-    } 
-    else{
-      this.displayAlert("Falta información del usuario.")
+        .then(() => {
+          this.isConfirm = true;
+          this.router.navigate(['/sign-in']);
+        })
+        .catch((error: any) => {
+          this.displayAlert(error.message);
+        });
+    } else {
+      this.displayAlert('Falta información del usuario.');
     }
   }
   private displayAlert(message: string) {

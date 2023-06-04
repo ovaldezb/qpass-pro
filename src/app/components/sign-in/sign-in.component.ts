@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
-import { CognitoService } from 'src/app/services/cognito.service';
-
+import { Auth } from 'aws-amplify';
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
@@ -14,34 +13,33 @@ export class SignInComponent implements OnInit {
   showAlert: boolean = false;
 
   isForgotPassword: boolean = false;
-  newPasswordConfirm: string='';
+  newPasswordConfirm: string = '';
   newPassword: string = '';
-  constructor(private router: Router, private cognitoService: CognitoService) {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.user = {} as User;
-    
   }
-
+  signInWithGoogle() {
+    Auth.federatedSignIn({ customProvider: 'Google' });
+  }
   signInWithCognito() {
     if (this.user && this.user.email && this.user.password) {
-      this.cognitoService
-        .signIn(this.user)
+      Auth.signIn(this.user.email, this.user.password)
         .then(() => {
-          this.router.navigate(['/']);
+          this.router.navigate(['/home']);
         })
         .catch((error: any) => {
           this.displayAlert(error.message);
         });
-    }
-    else{
-      this.displayAlert("Por favor ingresa credenciales válidas");
+    } else {
+      this.displayAlert('Por favor ingresa credenciales válidas');
     }
   }
+
   forgotPasswordClicked() {
     if (this.user && this.user.email) {
-      this.cognitoService
-        .forgotPassword(this.user)
+      Auth.forgotPassword(this.user.email)
         .then(() => {
           this.isForgotPassword = true;
         })
@@ -52,19 +50,31 @@ export class SignInComponent implements OnInit {
       this.displayAlert('Por favor ingresa un correo electrónico válido');
     }
   }
-  newPasswordSubmit(){
-    if(this.user && this.user.code && this.newPassword.trim().length!=0 && this.newPasswordConfirm.trim().length!=0 && this.newPasswordConfirm && this.newPassword===this.newPasswordConfirm){
-      this.cognitoService.forgotPasswordSubmit(this.user,this.newPassword.trim())
-      .then(()=>{
-        this.displayAlert("Contraseña actualizada");
-        this.isForgotPassword=false;
-      })
-      .catch((error: any) => {
-        this.displayAlert(error.message);
-      })
-    }
-    else{
-      this.displayAlert("Por favor ingresa el código de verificacion y una nueva contraseña")
+  newPasswordSubmit() {
+    if (
+      this.user &&
+      this.user.code &&
+      this.newPassword.trim().length != 0 &&
+      this.newPasswordConfirm.trim().length != 0 &&
+      this.newPasswordConfirm &&
+      this.newPassword === this.newPasswordConfirm
+    ) {
+      Auth.forgotPasswordSubmit(
+        this.user.email,
+        this.user.code,
+        this.newPassword.trim()
+      )
+        .then(() => {
+          this.displayAlert('Contraseña actualizada');
+          this.isForgotPassword = false;
+        })
+        .catch((error: any) => {
+          this.displayAlert(error.message);
+        });
+    } else {
+      this.displayAlert(
+        'Por favor ingresa el código de verificacion y una nueva contraseña'
+      );
     }
   }
   private displayAlert(message: string) {

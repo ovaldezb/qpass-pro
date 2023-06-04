@@ -1,36 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CognitoService } from 'src/app/services/cognito.service';
+import { Auth } from 'aws-amplify';
 
 @Component({
   selector: 'app-left-menu',
   templateUrl: './left-menu.component.html',
-  styleUrls: ['./left-menu.component.scss']
+  styleUrls: ['./left-menu.component.scss'],
 })
 export class LeftMenuComponent implements OnInit {
-
-  constructor(private router:Router, private cognitoService: CognitoService) { }
-
+  constructor(private router: Router) {}
+  user: any;
   ngOnInit(): void {
+    this.getUserDetails();
   }
-  
-  private getUserDetails(){
-    this.cognitoService.getUser()
-    .then((user:any)=>{
-      if(user){
-        console.log(user);
 
-      }
-      else{
+  private getUserDetails() {
+    Auth.currentUserInfo().then((user: any) => {
+      this.user = user;
+      if (user) {
+        console.log(user);
+      } else {
         this.router.navigate(['/sign-in']);
       }
-    })
-    
+    });
   }
-  signOutWithCognito(){
-    this.cognitoService.signOut()
-    .then(()=>{
-      this.router.navigate(["/sign-in"])
-    })
+  signOutWithCognito() {
+    Auth.signOut().then(() => {
+      this.router.navigate(['/sign-in']);
+    });
   }
 }

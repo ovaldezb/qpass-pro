@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-qpasspro-dev-165022-authRole",
+      "UnauthRoleArn": "arn:aws:iam::779244979964:role/amplify-qpasspro-dev-165022-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::779244979964:role/amplify-qpasspro-dev-165022-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-qpasspro-dev-165022-deployment",
+      "UnauthRoleName": "amplify-qpasspro-dev-165022-unauthRole",
+      "StackName": "amplify-qpasspro-dev-165022",
+      "StackId": "arn:aws:cloudformation:us-east-1:779244979964:stack/amplify-qpasspro-dev-165022/06a60190-0261-11ee-805c-0e2270d2bc43",
+      "AmplifyAppId": "d2g72q0pfw7u56"
+    },
+    "categories": {
+      "auth": {
+        "qpassproe397a68ce397a68c": {}
+      }
+    }
+  }
+}
