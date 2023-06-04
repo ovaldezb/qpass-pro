@@ -9,20 +9,23 @@ import { Auth } from 'aws-amplify';
 })
 export class LeftMenuComponent implements OnInit {
   constructor(private router: Router) {}
-  user: any;
+  user_attributes: any;
   ngOnInit(): void {
     this.getUserDetails();
   }
 
   private getUserDetails() {
-    Auth.currentUserInfo().then((user: any) => {
-      this.user = user;
-      if (user) {
-        console.log(user);
-      } else {
-        this.router.navigate(['/sign-in']);
-      }
-    });
+    Auth.currentUserInfo()
+      .then((user: any) => {
+        this.user_attributes = user.attributes;
+        if (user.username.includes('facebook'))
+          this.user_attributes.picture = JSON.parse(
+            user.attributes.picture
+          ).data.url;
+      })
+      .catch((err) => {
+        alert(err.message || JSON.stringify(err));
+      });
   }
   signOutWithCognito() {
     Auth.signOut().then(() => {

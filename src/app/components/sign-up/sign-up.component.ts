@@ -29,6 +29,9 @@ export class SignUpComponent implements OnInit {
         attributes: {
           email: this.user.email,
           given_name: this.user.givenName,
+          family_name: this.user.familyName,
+          picture:
+            'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y',
         },
       };
       Auth.signUp(user)

@@ -23,6 +23,9 @@ export class SignInComponent implements OnInit {
   signInWithGoogle() {
     Auth.federatedSignIn({ customProvider: 'Google' });
   }
+  signInWithFacebook() {
+    Auth.federatedSignIn({ customProvider: 'Facebook' });
+  }
   signInWithCognito() {
     if (this.user && this.user.email && this.user.password) {
       Auth.signIn(this.user.email, this.user.password)

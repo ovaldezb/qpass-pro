@@ -32,6 +32,7 @@ import { AddEditCondominiosComponent } from './components/add-edit-condominios/a
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { MessageModalComponent } from './components/message-modal/message-modal.component';
+import { ApiRestInterceptor } from './interceptors/api-rest.interceptor';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,7 @@ import { MessageModalComponent } from './components/message-modal/message-modal.
     HttpClientModule,
     QRCodeModule,
   ],
-  providers: [UsuariosService, CookieService],
+  providers: [UsuariosService, CookieService, ApiRestInterceptor],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
