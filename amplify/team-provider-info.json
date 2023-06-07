@@ -1,15 +1,28 @@
 {
-  "staging": {
+  "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-qpassproauth-staging-190218-authRole",
-      "UnauthRoleArn": "arn:aws:iam::779244979964:role/amplify-qpassproauth-staging-190218-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::779244979964:role/amplify-qpassproauth-staging-190218-authRole",
+      "AuthRoleName": "amplify-qpasspro-dev-175351-authRole",
+      "UnauthRoleArn": "arn:aws:iam::779244979964:role/amplify-qpasspro-dev-175351-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::779244979964:role/amplify-qpasspro-dev-175351-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-qpassproauth-staging-190218-deployment",
-      "UnauthRoleName": "amplify-qpassproauth-staging-190218-unauthRole",
-      "StackName": "amplify-qpassproauth-staging-190218",
-      "StackId": "arn:aws:cloudformation:us-east-1:779244979964:stack/amplify-qpassproauth-staging-190218/53fa4150-030a-11ee-a1a3-0e1f0a384537",
-      "AmplifyAppId": "d2hykp06of171w"
+      "DeploymentBucketName": "amplify-qpasspro-dev-175351-deployment",
+      "UnauthRoleName": "amplify-qpasspro-dev-175351-unauthRole",
+      "StackName": "amplify-qpasspro-dev-175351",
+      "StackId": "arn:aws:cloudformation:us-east-1:779244979964:stack/amplify-qpasspro-dev-175351/6484fe90-04c5-11ee-adbc-0a2bc878981f",
+      "AmplifyAppId": "d2tundxcogzvd3",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-qpasspro-dev-175351-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+    },
+    "categories": {
+      "auth": {
+        "qpasspro2d4ebecf2d4ebecf": {},
+        "userPoolGroups": {}
+      },
+      "function": {
+        "qpasspro2d4ebecf2d4ebecfPreSignup": {
+          "deploymentBucketName": "amplify-qpasspro-dev-175351-deployment",
+          "s3Key": "amplify-builds/qpasspro2d4ebecf2d4ebecfPreSignup-627055746750516f5a57-build.zip"
+        }
+      }
     }
   }
 }

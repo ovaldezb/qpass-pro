@@ -39,10 +39,17 @@ export class SignUpComponent implements OnInit {
           this.isConfirm = true;
         })
         .catch((error: any) => {
-          this.displayAlert(error.message);
+          if (error.message.includes('already exists')) {
+            alert(
+              'Se encontró un usuario de Facebook/Google con este mismo correo. Por favor, inicia sesión con redes sociales.'
+            );
+            this.router.navigate(['/sign-in']);
+          } else {
+            alert(error.message);
+          }
         });
     } else {
-      this.displayAlert('Falta email o contraseña');
+      alert('Falta email o contraseña');
     }
   }
 
@@ -56,10 +63,10 @@ export class SignUpComponent implements OnInit {
           this.router.navigate(['/sign-in']);
         })
         .catch((error: any) => {
-          this.displayAlert(error.message);
+          alert(error.message);
         });
     } else {
-      this.displayAlert('Falta información del usuario.');
+      alert('Falta información del usuario.');
     }
   }
   private displayAlert(message: string) {

@@ -33,10 +33,10 @@ export class SignInComponent implements OnInit {
           this.router.navigate(['/home']);
         })
         .catch((error: any) => {
-          this.displayAlert(error.message);
+          alert(error.message);
         });
     } else {
-      this.displayAlert('Por favor ingresa credenciales válidas');
+      alert('Por favor ingresa credenciales válidas');
     }
   }
 
@@ -47,10 +47,10 @@ export class SignInComponent implements OnInit {
           this.isForgotPassword = true;
         })
         .catch((error: any) => {
-          this.displayAlert(error.message);
+          alert(error.message);
         });
     } else {
-      this.displayAlert('Por favor ingresa un correo electrónico válido');
+      alert('Por favor ingresa un correo electrónico válido');
     }
   }
   newPasswordSubmit() {
@@ -68,14 +68,14 @@ export class SignInComponent implements OnInit {
         this.newPassword.trim()
       )
         .then(() => {
-          this.displayAlert('Contraseña actualizada');
+          alert('Contraseña actualizada');
           this.isForgotPassword = false;
         })
         .catch((error: any) => {
-          this.displayAlert(error.message);
+          alert(error.message);
         });
     } else {
-      this.displayAlert(
+      alert(
         'Por favor ingresa el código de verificacion y una nueva contraseña'
       );
     }

@@ -1,0 +1,14 @@
+[
+  {
+    "groupName": "SuperAdmins",
+    "precedence": 1
+  },
+  {
+    "groupName": "Administradores",
+    "precedence": 2
+  },
+  {
+    "groupName": "Inquilinos",
+    "precedence": 3
+  }
+]

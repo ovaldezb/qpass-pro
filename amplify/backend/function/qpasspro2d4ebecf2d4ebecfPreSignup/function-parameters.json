@@ -1,0 +1,16 @@
+{
+  "trigger": true,
+  "modules": [
+    "custom"
+  ],
+  "parentResource": "qpasspro2d4ebecf2d4ebecf",
+  "functionName": "qpasspro2d4ebecf2d4ebecfPreSignup",
+  "resourceName": "qpasspro2d4ebecf2d4ebecfPreSignup",
+  "parentStack": "auth",
+  "triggerEnvs": "[]",
+  "triggerDir": "/snapshot/repo/build/node_modules/@aws-amplify/amplify-category-auth/provider-utils/awscloudformation/triggers/PreSignup",
+  "triggerTemplate": "PreSignup.json.ejs",
+  "triggerEventPath": "PreSignup.event.json",
+  "roleName": "qpasspro2d4ebecf2d4ebecfPreSignup",
+  "skipEdit": true
+}

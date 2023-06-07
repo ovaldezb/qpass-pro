@@ -9,7 +9,7 @@ export class AuthService {
   public getToken(): string | null {
     for (let i = 0; i < localStorage.length; i++) {
       if (
-        localStorage.key(i)?.endsWith('accessToken') &&
+        localStorage.key(i)?.endsWith('idToken') &&
         localStorage.key(i)?.includes(environment.clientId)
       ) {
         return localStorage.getItem(

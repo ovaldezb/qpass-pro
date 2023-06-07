@@ -35,12 +35,12 @@
             Olvidaste tu contraseña?
           </p>
           <p>No estás registrado? <a href="/sign-up">Registro</a></p>
-          <button (click)="signInWithCognito()" >Iniciar Sesión</button>
-          <button (click)="signInWithGoogle()" >
-          <i class='fab fa-google fa-lg'></i> Iniciar Sesión con Google
+          <button (click)="signInWithCognito()">Iniciar Sesión</button>
+          <button (click)="signInWithGoogle()">
+            <i class="fab fa-google fa-lg"></i> Iniciar Sesión con Google
           </button>
-          <button (click)="signInWithFacebook()" >
-          <i class='fab fa-facebook fa-lg'></i> Iniciar Sesión con Facebook
+          <button (click)="signInWithFacebook()">
+            <i class="fab fa-facebook fa-lg"></i> Iniciar Sesión con Facebook
           </button>
         </div>
       </div>
@@ -54,37 +54,48 @@
           </h4>
         </div>
         <div class="form">
-        <input
-          type="text"
-          name="verificationCode"
-          placeholder="Ingresa el código de verificación"
-          [(ngModel)]="user.code"
-        />
-        <input
-            [type]="user.showPassword ? 'text':'password'"
+          <input
+            type="text"
+            name="verificationCode"
+            placeholder="Ingresa el código de verificación"
+            [(ngModel)]="user.code"
+          />
+          <input
+            [type]="user.showPassword ? 'text' : 'password'"
             name="password"
             [(ngModel)]="newPassword"
             placeholder="Nueva Contraseña"
           />
           <div style="font-size: 12px; margin:8px; 0">
-            <input type="checkbox" [checked]="user.showPassword" (change)="user.showPassword=!user.showPassword">
+            <input
+              type="checkbox"
+              [checked]="user.showPassword"
+              (change)="user.showPassword = !user.showPassword"
+            />
             Mostrar Contraseña
           </div>
-        <input
-            [type]="user.showPassword ? 'text':'password'"
+          <input
+            [type]="user.showPassword ? 'text' : 'password'"
             name="password"
             [(ngModel)]="newPasswordConfirm"
             placeholder="Reingresar nueva Contraseña"
           />
           <div style="font-size: 12px; margin:8px; 0">
-            <input type="checkbox" [checked]="user.showPassword" (change)="user.showPassword=!user.showPassword">
+            <input
+              type="checkbox"
+              [checked]="user.showPassword"
+              (change)="user.showPassword = !user.showPassword"
+            />
             Mostrar Contraseña
           </div>
-        <button (click)="newPasswordSubmit()">Reestablecer</button>
+          <button (click)="newPasswordSubmit()">Reestablecer</button>
+        </div>
       </div>
     </div>
-      </div>
-
-      
   </div>
 </div>
+<app-message-modal
+  *ngIf="showAlert"
+  (modalClose)="showAlert = false"
+  [message]="alertMessage"
+></app-message-modal>

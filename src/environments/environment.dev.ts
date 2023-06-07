@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
   apiUrl: 'http://my-api-url',
-  clientId: '6n6o92jbnr61epv5dankjkpn7m',
+  clientId: '2s8jp49t0atkiub0c21l1289ru',
 };

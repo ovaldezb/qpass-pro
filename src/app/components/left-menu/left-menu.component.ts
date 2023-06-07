@@ -18,7 +18,8 @@ export class LeftMenuComponent implements OnInit {
     Auth.currentUserInfo()
       .then((user: any) => {
         this.user_attributes = user.attributes;
-        if (user.username.includes('facebook'))
+
+        if (user.attributes.picture.includes('fbsbx'))
           this.user_attributes.picture = JSON.parse(
             user.attributes.picture
           ).data.url;
