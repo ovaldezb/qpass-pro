@@ -21,7 +21,7 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
 
 //Servicios -> Models
 import { UsuariosService } from './APIv1/usuarios.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ListaUsuariosComponent } from './components/lista-usuarios/lista-usuarios.component';
 import { AddEditUsuariosComponent } from './components/add-edit-usuarios/add-edit-usuarios.component';
 import { QRCodeModule } from 'angular2-qrcode';
@@ -65,7 +65,11 @@ import { ApiRestInterceptor } from './interceptors/api-rest.interceptor';
     HttpClientModule,
     QRCodeModule,
   ],
-  providers: [UsuariosService, CookieService, ApiRestInterceptor],
+  providers: [UsuariosService, CookieService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: ApiRestInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
