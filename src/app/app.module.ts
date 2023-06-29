@@ -30,6 +30,7 @@ import { ListaCondominiosComponent } from './components/lista-condominios/lista-
 import { AddEditCondominiosComponent } from './components/add-edit-condominios/add-edit-condominios.component';
 import { LoginComponent } from './components/login/login.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
+import { BulkUsersComponent } from './components/bulk-users/bulk-users.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { LoginFormComponent } from './components/login-form/login-form.component
     ListaCondominiosComponent,
     AddEditCondominiosComponent,
     LoginComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    BulkUsersComponent
   ],
   imports: [
     BrowserModule,

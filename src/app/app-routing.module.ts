@@ -7,6 +7,7 @@ import { ListaInvitacionesComponent } from './components/lista-invitaciones/list
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { CondominiosComponent } from './components/condominios/condominios.component';
 import { LoginComponent } from './components/login/login.component';
+import { BulkUsersComponent } from './components/bulk-users/bulk-users.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path:'usuario', component: UsuarioComponent },
   { path:'Usuarios',component: UsuariosComponent },
   { path:'condominios', component: CondominiosComponent },
+  { path:'bulk-users', component: BulkUsersComponent },
 ];
 
 @NgModule(
