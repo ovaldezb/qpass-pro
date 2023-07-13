@@ -21,10 +21,22 @@ export class SignInComponent implements OnInit {
     this.user = {} as User;
   }
   signInWithGoogle() {
-    Auth.federatedSignIn({ customProvider: 'Google' });
+    Auth.federatedSignIn({ customProvider: 'Google' })
+      .then(() => {
+        this.router.navigate(['/home']);
+      })
+      .catch((error: any) => {
+        alert(error.message);
+      });
   }
   signInWithFacebook() {
-    Auth.federatedSignIn({ customProvider: 'Facebook' });
+    Auth.federatedSignIn({ customProvider: 'Facebook' })
+      .then(() => {
+        this.router.navigate(['/home']);
+      })
+      .catch((error: any) => {
+        alert(error.message);
+      });
   }
   signInWithCognito() {
     if (this.user && this.user.email && this.user.password) {

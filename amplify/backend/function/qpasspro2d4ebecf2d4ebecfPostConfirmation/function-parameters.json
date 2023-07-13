@@ -1,0 +1,22 @@
+{
+  "trigger": true,
+  "modules": [
+    "add-to-group"
+  ],
+  "parentResource": "qpasspro2d4ebecf2d4ebecf",
+  "functionName": "qpasspro2d4ebecf2d4ebecfPostConfirmation",
+  "resourceName": "qpasspro2d4ebecf2d4ebecfPostConfirmation",
+  "parentStack": "auth",
+  "triggerEnvs": "[]",
+  "triggerDir": "/snapshot/repo/build/node_modules/@aws-amplify/amplify-category-auth/provider-utils/awscloudformation/triggers/PostConfirmation",
+  "triggerTemplate": "PostConfirmation.json.ejs",
+  "triggerEventPath": "PostConfirmation.event.json",
+  "roleName": "qpasspro2d4ebecf2d4ebecfPostConfirmation",
+  "skipEdit": true,
+  "secretNames": [
+    "MONGO_USER",
+    "MONGO_DB",
+    "MONGO_HOST",
+    "MONGO_PW"
+  ]
+}

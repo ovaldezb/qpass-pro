@@ -11,6 +11,13 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "function": {
+    "qpasspro2d4ebecf2d4ebecfPostConfirmation": {
+      "Arn": "string",
+      "LambdaExecutionRole": "string",
+      "LambdaExecutionRoleArn": "string",
+      "Name": "string",
+      "Region": "string"
+    },
     "qpasspro2d4ebecf2d4ebecfPreSignup": {
       "Arn": "string",
       "LambdaExecutionRole": "string",

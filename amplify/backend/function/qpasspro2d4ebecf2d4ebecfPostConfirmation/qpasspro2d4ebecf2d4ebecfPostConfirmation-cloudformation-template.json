@@ -2,11 +2,7 @@
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "{\"createdOn\":\"Mac\",\"createdBy\":\"Amplify\",\"createdWith\":\"12.0.3\",\"stackType\":\"function-Lambda\",\"metadata\":{}}",
   "Parameters": {
-    "DOMAINBLACKLIST": {
-      "Type": "String",
-      "Default": ""
-    },
-    "DOMAINWHITELIST": {
+    "GROUP": {
       "Type": "String",
       "Default": ""
     },
@@ -42,13 +38,13 @@
     "env": {
       "Type": "String"
     },
+    "secretsPathAmplifyAppId": {
+      "Type": "String"
+    },
     "deploymentBucketName": {
       "Type": "String"
     },
     "s3Key": {
-      "Type": "String"
-    },
-    "secretsPathAmplifyAppId": {
       "Type": "String"
     }
   },
@@ -74,12 +70,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "qpasspro2d4ebecf2d4ebecfPreSignup",
+            "qpasspro2d4ebecf2d4ebecfPostConfirmation",
             {
               "Fn::Join": [
                 "",
                 [
-                  "qpasspro2d4ebecf2d4ebecfPreSignup",
+                  "qpasspro2d4ebecf2d4ebecfPostConfirmation",
                   "-",
                   {
                     "Ref": "env"
@@ -100,11 +96,8 @@
             "REGION": {
               "Ref": "AWS::Region"
             },
-            "DOMAINWHITELIST": {
-              "Ref": "DOMAINWHITELIST"
-            },
-            "DOMAINBLACKLIST": {
-              "Ref": "DOMAINBLACKLIST"
+            "GROUP": {
+              "Ref": "GROUP"
             },
             "MONGO_USER": {
               "Fn::Join": [
@@ -120,55 +113,11 @@
                         "env": {
                           "Ref": "env"
                         },
-                        "functionName": "qpasspro2d4ebecf2d4ebecfPreSignup"
+                        "functionName": "qpasspro2d4ebecf2d4ebecfPostConfirmation"
                       }
                     ]
                   },
                   "MONGO_USER"
-                ]
-              ]
-            },
-            "MONGO_PW": {
-              "Fn::Join": [
-                "",
-                [
-                  {
-                    "Fn::Sub": [
-                      "/amplify/${appId}/${env}/AMPLIFY_${functionName}_",
-                      {
-                        "appId": {
-                          "Ref": "secretsPathAmplifyAppId"
-                        },
-                        "env": {
-                          "Ref": "env"
-                        },
-                        "functionName": "qpasspro2d4ebecf2d4ebecfPreSignup"
-                      }
-                    ]
-                  },
-                  "MONGO_PW"
-                ]
-              ]
-            },
-            "MONGO_HOST": {
-              "Fn::Join": [
-                "",
-                [
-                  {
-                    "Fn::Sub": [
-                      "/amplify/${appId}/${env}/AMPLIFY_${functionName}_",
-                      {
-                        "appId": {
-                          "Ref": "secretsPathAmplifyAppId"
-                        },
-                        "env": {
-                          "Ref": "env"
-                        },
-                        "functionName": "qpasspro2d4ebecf2d4ebecfPreSignup"
-                      }
-                    ]
-                  },
-                  "MONGO_HOST"
                 ]
               ]
             },
@@ -186,7 +135,7 @@
                         "env": {
                           "Ref": "env"
                         },
-                        "functionName": "qpasspro2d4ebecf2d4ebecfPreSignup"
+                        "functionName": "qpasspro2d4ebecf2d4ebecfPostConfirmation"
                       }
                     ]
                   },
@@ -194,7 +143,7 @@
                 ]
               ]
             },
-            "DEFAULT_PASSWORD": {
+            "MONGO_HOST": {
               "Fn::Join": [
                 "",
                 [
@@ -208,11 +157,33 @@
                         "env": {
                           "Ref": "env"
                         },
-                        "functionName": "qpasspro2d4ebecf2d4ebecfPreSignup"
+                        "functionName": "qpasspro2d4ebecf2d4ebecfPostConfirmation"
                       }
                     ]
                   },
-                  "DEFAULT_PASSWORD"
+                  "MONGO_HOST"
+                ]
+              ]
+            },
+            "MONGO_PW": {
+              "Fn::Join": [
+                "",
+                [
+                  {
+                    "Fn::Sub": [
+                      "/amplify/${appId}/${env}/AMPLIFY_${functionName}_",
+                      {
+                        "appId": {
+                          "Ref": "secretsPathAmplifyAppId"
+                        },
+                        "env": {
+                          "Ref": "env"
+                        },
+                        "functionName": "qpasspro2d4ebecf2d4ebecfPostConfirmation"
+                      }
+                    ]
+                  },
+                  "MONGO_PW"
                 ]
               ]
             }
@@ -242,12 +213,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "qpasspro2d4ebecf2d4ebecfPreSignup",
+            "qpasspro2d4ebecf2d4ebecfPostConfirmation",
             {
               "Fn::Join": [
                 "",
                 [
-                  "qpasspro2d4ebecf2d4ebecfPreSignup",
+                  "qpasspro2d4ebecf2d4ebecfPostConfirmation",
                   "-",
                   {
                     "Ref": "env"
@@ -313,33 +284,6 @@
                   }
                 ]
               }
-            },
-            {
-              "Effect": "Allow",
-              "Action": [
-                "cognito-idp:ListUsers",
-                "cognito-idp:ListGroups",
-                "cognito-idp:AdminCreateUser",
-                "cognito-idp:AdminLinkProviderForUser",
-                "cognito-idp:AdminSetUserPassword",
-                "cognito-idp:AdminConfirmSignUp"
-              ],
-              "Resource": {
-                "Fn::Sub": [
-                  "arn:aws:cognito-idp:${region}:${account}:*",
-                  {
-                    "region": {
-                      "Ref": "AWS::Region"
-                    },
-                    "account": {
-                      "Ref": "AWS::AccountId"
-                    },
-                    "lambda": {
-                      "Ref": "LambdaFunction"
-                    }
-                  }
-                ]
-              }
             }
           ]
         }
@@ -386,7 +330,7 @@
                           "env": {
                             "Ref": "env"
                           },
-                          "functionName": "qpasspro2d4ebecf2d4ebecfPreSignup"
+                          "functionName": "qpasspro2d4ebecf2d4ebecfPostConfirmation"
                         }
                       ]
                     },

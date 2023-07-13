@@ -1,6 +1,27 @@
-const { CognitoIdentityServiceProvider } = require("aws-sdk");
+const aws = require("aws-sdk");
+const database = require("./database");
 
 const handler = async (event) => {
+  const aws = require("aws-sdk");
+
+  const { Parameters } = await new aws.SSM()
+    .getParameters({
+      Names: [
+        "MONGO_USER",
+        "MONGO_PW",
+        "MONGO_HOST",
+        "MONGO_DB",
+        "DEFAULT_PASSWORD",
+      ].map((secretName) => process.env[secretName]),
+      WithDecryption: true,
+    })
+    .promise();
+  // unpack values
+  var parameters_dict = new Object();
+  Parameters.forEach((element) => {
+    parameters_dict[element.Name] = element.Value;
+  });
+  console.log("evento de presignup " + JSON.stringify(event));
   const userPoolId = event.userPoolId;
   const trigger = event.triggerSource;
   const email = event.request.userAttributes.email;
@@ -8,8 +29,28 @@ const handler = async (event) => {
   const familyName = event.request.userAttributes.family_name;
   const emailVerified = event.request.userAttributes.email_verified;
   const identity = event.userName;
-  const client = new CognitoIdentityServiceProvider();
+  const client = new aws.CognitoIdentityServiceProvider();
+  //conectarnos a la base
 
+  const db = database(
+    `mongodb+srv://${parameters_dict[process.env.MONGO_USER]}:${
+      parameters_dict[process.env.MONGO_PW]
+    }@${parameters_dict[process.env.MONGO_HOST]}/${
+      parameters_dict[process.env.MONGO_DB]
+    }?retryWrites=true&w=majority`
+  );
+  //buscar usuario
+  var potencial_usuario = await db.getUserByEmail(email);
+
+  if (potencial_usuario === null)
+    return Promise.reject(
+      new Error(
+        "El usuario no esta preregistrado con el correo " +
+          email +
+          ". Por favor contacta a tu administrador."
+      )
+    );
+  //Consolidacion de cuentas sociales
   if (trigger === "PreSignUp_ExternalProvider") {
     await client
       .listUsers({
@@ -64,7 +105,7 @@ const handler = async (event) => {
           .adminSetUserPassword({
             UserPoolId: userPoolId,
             Username: newUser.User.Username,
-            Password: process.env.DEFAULT_PASSWORD,
+            Password: parameters_dict[process.env.DEFAULT_PASSWORD],
             Permanent: true,
           })
           .promise();

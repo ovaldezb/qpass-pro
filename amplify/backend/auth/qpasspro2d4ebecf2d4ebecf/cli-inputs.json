@@ -44,6 +44,9 @@
     "userPoolGroups": true,
     "adminQueries": false,
     "triggers": {
+      "PostConfirmation": [
+        "add-to-group"
+      ],
       "PreSignup": [
         "custom"
       ]
@@ -55,7 +58,6 @@
       "Google"
     ],
     "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"family_name\":\"last_name\",\"given_name\":\"first_name\",\"picture\":\"picture\",\"username\":\"id\"}},{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"family_name\":\"family_name\",\"given_name\":\"given_name\",\"picture\":\"picture\",\"username\":\"sub\"}}]",
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:4200/\"],\"LogoutURLs\":[\"http://localhost:4200/\"]}",
     "userPoolGroupList": [
       "SuperAdmins",
       "Administradores",
@@ -63,6 +65,48 @@
     ],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
-    "useEnabledMfas": true
+    "useEnabledMfas": true,
+    "authRoleArn": {
+      "Fn::GetAtt": [
+        "AuthRole",
+        "Arn"
+      ]
+    },
+    "unauthRoleArn": {
+      "Fn::GetAtt": [
+        "UnauthRole",
+        "Arn"
+      ]
+    },
+    "breakCircularDependency": true,
+    "dependsOn": [
+      {
+        "category": "function",
+        "resourceName": "qpasspro2d4ebecf2d4ebecfPreSignup",
+        "triggerProvider": "Cognito",
+        "attributes": [
+          "Arn",
+          "Name"
+        ]
+      },
+      {
+        "category": "function",
+        "resourceName": "qpasspro2d4ebecf2d4ebecfPostConfirmation",
+        "triggerProvider": "Cognito",
+        "attributes": [
+          "Arn",
+          "Name"
+        ]
+      }
+    ],
+    "permissions": [
+      "{\n  \"policyName\": \"AddToGroupCognito\",\n  \"trigger\": \"PostConfirmation\",\n  \"effect\": \"Allow\",\n  \"actions\": [\n    \"cognito-idp:AdminAddUserToGroup\",\n    \"cognito-idp:GetGroup\",\n    \"cognito-idp:CreateGroup\"\n  ],\n  \"resource\": {\n    \"paramType\": \"!GetAtt\",\n    \"keys\": [\n      \"UserPool\",\n      \"Arn\"\n    ]\n  }\n}"
+    ],
+    "authTriggerConnections": "[\n  {\n    \"triggerType\": \"PostConfirmation\",\n    \"lambdaFunctionName\": \"qpasspro2d4ebecf2d4ebecfPostConfirmation\"\n  },\n  {\n    \"triggerType\": \"PreSignUp\",\n    \"lambdaFunctionName\": \"qpasspro2d4ebecf2d4ebecfPreSignup\"\n  }\n]",
+    "parentStack": {
+      "Ref": "AWS::StackId"
+    },
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:4200/\"],\"LogoutURLs\":[\"http://localhost:4200/\"]}",
+    "authProviders": []
   }
 }

@@ -12,5 +12,12 @@
   "triggerTemplate": "PreSignup.json.ejs",
   "triggerEventPath": "PreSignup.event.json",
   "roleName": "qpasspro2d4ebecf2d4ebecfPreSignup",
-  "skipEdit": true
+  "skipEdit": true,
+  "secretNames": [
+    "MONGO_USER",
+    "MONGO_PW",
+    "MONGO_HOST",
+    "MONGO_DB",
+    "DEFAULT_PASSWORD"
+  ]
 }

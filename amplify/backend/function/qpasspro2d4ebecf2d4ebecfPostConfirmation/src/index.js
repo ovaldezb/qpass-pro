@@ -5,14 +5,13 @@ const aws = require('aws-sdk');
 
 const { Parameters } = await (new aws.SSM())
   .getParameters({
-    Names: ["MONGO_USER","MONGO_PW","MONGO_HOST","MONGO_DB","DEFAULT_PASSWORD"].map(secretName => process.env[secretName]),
+    Names: ["MONGO_USER","MONGO_DB","MONGO_HOST","MONGO_PW"].map(secretName => process.env[secretName]),
     WithDecryption: true,
   })
   .promise();
 
 Parameters will be of the form { Name: 'secretName', Value: 'secretValue', ... }[]
 */
-
 /**
  * @fileoverview
  *
@@ -24,7 +23,7 @@ Parameters will be of the form { Name: 'secretName', Value: 'secretValue', ... }
  * The names of modules to load are stored as a comma-delimited string in the
  * `MODULES` env var.
  */
-const moduleNames = process.env.MODULES.split(",");
+const moduleNames = process.env.MODULES.split(',');
 /**
  * The array of imported modules.
  */
