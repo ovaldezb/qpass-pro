@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { CookieService } from 'ngx-cookie-service'; 
+import { CookieService } from 'ngx-cookie-service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,15 +21,18 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
 
 //Servicios -> Models
 import { UsuariosService } from './APIv1/usuarios.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ListaUsuariosComponent } from './components/lista-usuarios/lista-usuarios.component';
 import { AddEditUsuariosComponent } from './components/add-edit-usuarios/add-edit-usuarios.component';
 import { QRCodeModule } from 'angular2-qrcode';
 import { CondominiosComponent } from './components/condominios/condominios.component';
 import { ListaCondominiosComponent } from './components/lista-condominios/lista-condominios.component';
 import { AddEditCondominiosComponent } from './components/add-edit-condominios/add-edit-condominios.component';
-import { LoginComponent } from './components/login/login.component';
-import { LoginFormComponent } from './components/login-form/login-form.component';
+
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
+import { MessageModalComponent } from './components/message-modal/message-modal.component';
+import { ApiRestInterceptor } from './interceptors/api-rest.interceptor';
 import { BulkUsersComponent } from './components/bulk-users/bulk-users.component';
 
 @NgModule({
@@ -50,8 +53,10 @@ import { BulkUsersComponent } from './components/bulk-users/bulk-users.component
     CondominiosComponent,
     ListaCondominiosComponent,
     AddEditCondominiosComponent,
-    LoginComponent,
-    LoginFormComponent,
+
+    SignUpComponent,
+    SignInComponent,
+    MessageModalComponent,,
     BulkUsersComponent
   ],
   imports: [
@@ -60,9 +65,13 @@ import { BulkUsersComponent } from './components/bulk-users/bulk-users.component
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    QRCodeModule
+    QRCodeModule,
   ],
-  providers: [UsuariosService, CookieService],
-  bootstrap: [AppComponent]
+  providers: [UsuariosService, CookieService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: ApiRestInterceptor,
+    multi: true
+  }],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

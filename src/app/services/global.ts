@@ -5,5 +5,5 @@ export var Global ={
   urlCondominios: 'https://ipz5z3hru6.execute-api.us-east-1.amazonaws.com/dev/condominio',
   GUARDAR:'Guardar',
   ACTUALIZAR: 'Actualizar',
-  AGREGAR: 'Agregar' 
-}
+  AGREGAR: 'Agregar' ,
+};

@@ -1,0 +1,140 @@
+{
+  "auth": {
+    "qpasspro2d4ebecf2d4ebecf": {
+      "customAuth": false,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Arn",
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "qpasspro2d4ebecf2d4ebecfPreSignup",
+          "triggerProvider": "Cognito"
+        },
+        {
+          "attributes": [
+            "Arn",
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "qpasspro2d4ebecf2d4ebecfPostConfirmation",
+          "triggerProvider": "Cognito"
+        }
+      ],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [],
+          "passwordPolicyMinLength": 8
+        },
+        "signupAttributes": [
+          "EMAIL",
+          "FAMILY_NAME",
+          "GIVEN_NAME",
+          "PICTURE"
+        ],
+        "socialProviders": [
+          "FACEBOOK",
+          "GOOGLE"
+        ],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito"
+    },
+    "userPoolGroups": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId",
+            "AppClientIDWeb",
+            "AppClientID"
+          ],
+          "category": "auth",
+          "resourceName": "qpasspro2d4ebecf2d4ebecf"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito-UserPool-Groups"
+    }
+  },
+  "function": {
+    "qpasspro2d4ebecf2d4ebecfPostConfirmation": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "qpasspro2d4ebecf2d4ebecfPreSignup": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_qpasspro2d4ebecf2d4ebecfPostConfirmation_GROUP": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "qpasspro2d4ebecf2d4ebecfPostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_qpasspro2d4ebecf2d4ebecfPostConfirmation_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "qpasspro2d4ebecf2d4ebecfPostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_qpasspro2d4ebecf2d4ebecfPostConfirmation_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "qpasspro2d4ebecf2d4ebecfPostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_qpasspro2d4ebecf2d4ebecfPostConfirmation_secretsPathAmplifyAppId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "qpasspro2d4ebecf2d4ebecfPostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_qpasspro2d4ebecf2d4ebecfPreSignup_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "qpasspro2d4ebecf2d4ebecfPreSignup"
+        }
+      ]
+    },
+    "AMPLIFY_function_qpasspro2d4ebecf2d4ebecfPreSignup_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "qpasspro2d4ebecf2d4ebecfPreSignup"
+        }
+      ]
+    },
+    "AMPLIFY_function_qpasspro2d4ebecf2d4ebecfPreSignup_secretsPathAmplifyAppId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "qpasspro2d4ebecf2d4ebecfPreSignup"
+        }
+      ]
+    }
+  }
+}
