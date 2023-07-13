@@ -98,7 +98,7 @@ export class AddEditCondominiosComponent implements OnInit {
      this.condosGroupForm.reset();*/
       
       
-      this.service.updateCondominio(this.condo.id, this.condo).subscribe(res => {
+      this.service.updateCondominio(this.condo._id, this.condo).subscribe(res => {
 
         this.apiResponse = res;
         

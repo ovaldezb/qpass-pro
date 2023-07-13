@@ -45,7 +45,7 @@ export class AddEditUsuariosComponent implements OnInit {
     else if (this.mission == "Editar Usuario") {
 
 
-      this.service.updateUser(this.user.id, this.user).subscribe(res => {
+      this.service.updateUser(this.user._id, this.user).subscribe(res => {
 
         this.apiResponse = res;
 

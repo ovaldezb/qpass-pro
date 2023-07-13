@@ -7,6 +7,7 @@ import { ListaInvitacionesComponent } from './components/lista-invitaciones/list
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { CondominiosComponent } from './components/condominios/condominios.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
+import { BulkUsersComponent } from './components/bulk-users/bulk-users.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { AuthGuard } from './guards/auth.guard';
 import { HomeGuard } from './guards/home.guard';
@@ -26,11 +27,11 @@ const routes: Routes = [
   { path: 'Usuarios', component: UsuariosComponent, canActivate: [HomeGuard] },
   {
     path: 'condominios',
-    component: CondominiosComponent,
-    canActivate: [HomeGuard],
+    component: CondominiosComponent    canActivate: [HomeGuard],
   },
 
   { path: '**', redirectTo: '', pathMatch: 'full', canActivate: [AuthGuard] },
+  { path:'bulk-users', component: BulkUsersComponent },
 ];
 
 @NgModule({

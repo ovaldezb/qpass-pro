@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Global } from '../global';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,31 +15,31 @@ export class CondominiosService {
 
   getCondo(id: any): Observable<any[]> {
 
-    return this.http.get<any>(this.API_Url + '/Condominios/' + id);
+    return this.http.get<any>(Global.urlCondominios + "/" + id);
 
   }
 
   getCondos(): Observable<any[]> {
 
-    return this.http.get<any>(this.API_Url + '/Condominios');
+    return this.http.get<any>(Global.urlCondominios);
 
   }
 
   addNewCondo(nuevoCondominio: any) {
 
-    return this.http.post(this.API_Url + '/Condominios/', nuevoCondominio);
+    return this.http.post(Global.urlCondominios, nuevoCondominio);
 
   }
 
   updateCondominio(id_: any, modifyCondominio: any) {
 
-    return this.http.put(this.API_Url + '/Condominios/' + id_, modifyCondominio);
+    return this.http.put(Global.urlCondominios + "/" + id_, modifyCondominio);
 
   }
 
   deleteCondominio(id_: any) {
 
-    return this.http.delete(this.API_Url + '/Condominios/' + id_);
+    return this.http.delete(Global.urlCondominios + "/" + id_);
 
   }
 

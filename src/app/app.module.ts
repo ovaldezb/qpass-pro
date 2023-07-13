@@ -33,6 +33,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { MessageModalComponent } from './components/message-modal/message-modal.component';
 import { ApiRestInterceptor } from './interceptors/api-rest.interceptor';
+import { BulkUsersComponent } from './components/bulk-users/bulk-users.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { ApiRestInterceptor } from './interceptors/api-rest.interceptor';
 
     SignUpComponent,
     SignInComponent,
-    MessageModalComponent,
+    MessageModalComponent,,
+    BulkUsersComponent
   ],
   imports: [
     BrowserModule,

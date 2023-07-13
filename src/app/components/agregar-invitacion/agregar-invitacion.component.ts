@@ -17,7 +17,6 @@ export class AgregarInvitacionComponent implements OnInit {
   @Output() cancelStatus = new EventEmitter();
   public action:String="Guardar";
   public isQR:boolean=false;
-  public invitacionQR:string="";
   public title:string="Nueva Invitación";
   constructor(private invitacionService: InvitacionesService) { }
 
@@ -34,8 +33,7 @@ export class AgregarInvitacionComponent implements OnInit {
         'invitado':this.invitacion.nombreInvitado,
         'fechaEvento':this.invitacion.fechaEvento
       }];
-      var encrypted = CryptoJS.AES.encrypt(JSON.stringify(inv), "QWxwaGFDZW50YXVyeTMuMTQuMTY=").toString();
-      this.invitacionQR = encrypted;
+      
     }
   }
 
