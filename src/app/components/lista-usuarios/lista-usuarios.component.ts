@@ -1,6 +1,6 @@
-import { NONE_TYPE } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { UsuariosService } from 'src/app/APIv1/usuarios.service';
+import { UsuariosfinalesService } from 'src/app/services/usuarios/usuariosfinales.service';
+import { Usuario } from 'src/app/models/usuario';
 
 @Component({
   selector: 'app-lista-usuarios',
@@ -10,15 +10,14 @@ import { UsuariosService } from 'src/app/APIv1/usuarios.service';
 
 export class ListaUsuariosComponent implements OnInit {
 
-  public HighlightRow: number = -1;
-  public ModalTitle: string = "";
-  public ActivateAddEditUser: boolean = false;
-  public userOperation: any = [];
-  public ListaUsuarios: any = [];
-  public UserSelected: any = [];
-  
 
-  constructor(private service: UsuariosService) { }
+  ModalTitle: string = '';
+  taskMission: boolean = false;
+  usuariosFinales: Usuario[] = [];
+  newUsuario: Usuario = new Usuario('','', '', '', '', '', '', '', 0);
+  apiResponse: any;
+
+  constructor(private service: UsuariosfinalesService) { }
 
 
 
@@ -28,67 +27,64 @@ export class ListaUsuariosComponent implements OnInit {
 
   }
 
+
+
+  addUserClick(){
+
+    this.newUsuario = new Usuario('', '', '', '', '', '', '', '', 0);
+    this.taskMission = true;
+    this.ModalTitle = "Agregar Usuario";
+
+  }
+
+  editUserClick(user: any){
+
+    this.ModalTitle = "Editar Usuario"
+    this.newUsuario = user;
+    this.taskMission = true;
+  }
+
+
+
+  respuestaUpdate(event: boolean) {
+
+    console.log(event);
+
+    this.refreshUsers();
+
+  }
+
+
+  eliminarUser(user: any) {
+
+    this.taskMission = true;
+    this.ModalTitle = "Eliminar Condominio";
+
+    if (confirm('Estas Seguro?')) {
+
+
+      this.service.deleteUser(user).subscribe(res => {
+
+        this.apiResponse = res;
+        this.refreshUsers();
+
+      });
+
+    }
+  }
+
   refreshUsers() {
 
     this.service.getUsers().subscribe(data => {
 
-      this.ListaUsuarios = data;
+      this.usuariosFinales = data;
     });
-  }
-
-  selectRow(index: number): void {
-    console.log('Index' + index);
-    this.HighlightRow = index;
-    
-  }
-
-  addUserClick(){
-
-    this.ModalTitle = "Agregar Usuario";
-
-    console.log("si llega")
-    
-    this.userOperation = {
-      id:"0",
-      Nombre: "", 
-      Apellidos:"",
-      Condominio:"",
-      Direccion:""
-    }
-
-    this.UserSelected = this.userOperation;
-    
-    this.ActivateAddEditUser = true;
-
-  }
-
-  editUserClick(){
-
-    this.ModalTitle = "Editar Usuario"
-    this.userOperation = this.ListaUsuarios[this.HighlightRow]
-    this.ActivateAddEditUser = true;
-
-    this.UserSelected = this.ListaUsuarios[this.HighlightRow]
-
-    //console.log(this.HighlightRow)
-    //console.log(this.ListaUsuarios[this.HighlightRow]['id'])
-  }
-
-  crearUsuario(/*private service*/) {
-
-    var palAPI = {"Nombre": "this.userOperation.Nombre"};
-    console.log();
-  }
-
-  editarUsuario(){
-
-
   }
 
   closeModal() {
 
-    this.ActivateAddEditUser = false;
     this.refreshUsers();
+    this.taskMission = false;
 
   }
 

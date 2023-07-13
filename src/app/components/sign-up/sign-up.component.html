@@ -1,0 +1,59 @@
+<div class="container" *ngIf="user">
+  <div class="row w-100 vh-100 justify-content-center align-items-center">
+    <div class="auth-box">
+      <div *ngIf="!isConfirm">
+      <!-- registro -->
+         <div class="header">
+          <h2>Registro</h2>
+          <h4>Registrate aqui con la siguiente información:</h4>
+        </div>
+        <div class="form">
+          <input
+            type="text"
+            name="givenName"
+            [(ngModel)]="user.givenName"
+            placeholder="Nombre"
+          />
+          <input
+            type="text"
+            name="familyName"
+            [(ngModel)]="user.familyName"
+            placeholder="Apellido Paterno"
+          />
+          <input
+            type="email"
+            name="email"
+            [(ngModel)]="user.email"
+            placeholder="Correo Electrónico"
+          />
+          <input
+            [type]="user.showPassword ? 'text':'password'"
+            name="password"
+            [(ngModel)]="user.password"
+            placeholder="Contraseña"
+          />
+          <div style="font-size: 12px; margin:8px; 0">
+            <input type="checkbox" [checked]="user.showPassword" (change)="user.showPassword=!user.showPassword">
+            Mostrar Contraseña
+          </div>
+          <p>Ya estas registrado? <a href="/sign-in">Inicia sesión</a></p>
+          <button (click)="signUpWithCognito()">Registrar</button>
+        </div>
+      </div>
+    
+      <div *ngIf="isConfirm">
+      <!-- confirmar cuenta -->
+        <div class="header">
+        <h2> Ingresa Código</h2>
+        <h4 style="color: green;"> Se ha enviado un código de verificación a {{user.email}}</h4>
+        </div>
+
+        <div class="form">
+         <input type="text" name="verificationCode" placeholder="Ingresa el código de verificación" [(ngModel)]="user.code">
+         <button (click)="confirmSignUp()">Validar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

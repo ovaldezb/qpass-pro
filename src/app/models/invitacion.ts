@@ -11,6 +11,12 @@ export class Invitacion{
     public horaEvento: number,
     public detalle:string,
     public lugar:string,
-    public notificarEntrada:boolean
+    public notificarEntrada:boolean,
+    public placas: string,
+    public tarjeton: string,
+    public horaIngreso: Date,
+    public dejaId: boolean,
+    public esRecurrente:boolean,
+    public numRepeticiones:number
   ){}
 }

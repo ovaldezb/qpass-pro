@@ -1,70 +1,92 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <div class="w-auto p-3 fs-1 text-center" style="background-color: rgb(238, 100, 100);">Nueva Invitación</div>
+      <div class="w-auto p-3 fs-1 text-center" style="background-color: rgb(238, 100, 100);">{{title}}</div>
     </div>
   </div>
-  <div class="row">
-    <div class="col">
-      <div class="row">
-        <div class="col">
-          <div class="mb-3">
-            <label for="" class="form-label">Anfitrión:</label>
-            <input class="form-control" type="text" placeholder="Anfitrión" name="anfitrion"  [(ngModel)]="invitacion.anfitrion">
+  <form class="mid-form" #userForm="ngForm" >
+    <div class="row">
+      <div class="col">
+        <div class="row">
+          <div class="col">
+            <div class="mb-3">
+              <label for="" class="form-label">Anfitrión:</label>
+              <input class="form-control" type="text" placeholder="Anfitrión" name="anfitrion"  [(ngModel)]="invitacion.anfitrion">
+            </div>
+            <div class="mb-3">
+              <label for="" class="form-label">Asunto:</label>
+              <input class="form-control" type="text" placeholder="Asunto" name="asunto" #asunto="ngModel" [(ngModel)]="invitacion.asunto" required minlength="5">
+              <small *ngIf="!asunto.valid && asunto.errors?.['minlength']" style="background-color: red;font-size: large;">Asunto no válido!</small>
+            </div>
+            <div class="mb-3">
+              <label for="" class="form-label">Invitado:</label>
+              <input class="form-control" type="text" placeholder="Nombre Invitado" #nombreInvitado="ngModel" name="nombreInvitado" [(ngModel)]="invitacion.nombreInvitado" required pattern="^[\w\s]{0,50}$">
+              <small *ngIf="!nombreInvitado.valid && nombreInvitado.touched" style="background-color: red;font-size: large;">Nombre no válido!</small>
+            </div>
+            <div class="mb-3">
+              <label for="" class="form-label"></label>
+              <input class="form-control" type="tel" placeholder="Teléfono Invitado" #telefonoInvitado="ngModel" name="telefonoInvitado" [(ngModel)]="invitacion.telefonoInvitado" required minlength="10" pattern="^[0-9]{10,12}$">
+              <small *ngIf="!telefonoInvitado.valid && telefonoInvitado.touched" style="background-color: red;font-size: large;">Teléfono no válido!</small>
+            </div>
+            <div class="mb-3">
+              <label for="" class="form-label"></label>
+              <input class="form-control" type="email" placeholder="Correo Invitado" #correoInvitado="ngModel" name="correoInvitado" [(ngModel)]="invitacion.correoInvitado" required 
+              pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$">
+              <small *ngIf="!correoInvitado.valid && correoInvitado.touched" style="background-color: red;font-size: large;">Correo no válido!</small>
+            </div>
           </div>
-          <div class="mb-3">
-            <label for="" class="form-label">Asunto:</label>
-            <input class="form-control" type="text" placeholder="Asunto" [(ngModel)]="invitacion.asunto">
-          </div>
-          <div class="mb-3">
-            <label for="" class="form-label">Invitado:</label>
-            <input class="form-control" type="text" placeholder="Nombre Invitado" [(ngModel)]="invitacion.nombreInvitado">
-          </div>
-          <div class="mb-3">
-            <label for="" class="form-label"></label>
-            <input class="form-control" type="tel" placeholder="Teléfono Invitado" [(ngModel)]="invitacion.telefonoInvitado">
-          </div>
-          <div class="mb-3">
-            <label for="" class="form-label"></label>
-            <input class="form-control" type="email" placeholder="Correo Invitado" [(ngModel)]="invitacion.correoInvitado">
-          </div>
-        </div>
-        <div class="col">
-          <div class="mb-3" >
-            <label for="" class="form-label" style="margin-bottom: -5px;">Fecha del Evento</label>
-          </div>
-          <div class="input-group mb-3">
-            <input class="form-control" type="date" placeholder="Fecha Evento" [(ngModel)]="invitacion.fechaEvento">
-            <span class="input-group-text">&nbsp;</span>
-            <input class="form-control" type="time" placeholder="Hora Evento" [(ngModel)]="invitacion.horaEvento">
-          </div>
-          <div class="mb-3">
-            <label for="customRange1" class="form-label">Duración: {{invitacion.duracion}}&nbsp;horas </label>
-            <input type="range" class="form-range" id="customRange1" [(ngModel)]="invitacion.duracion">
-          </div>
-          <div class="mb-3">
-            <label for="" class="form-label">Lugar</label>
-            <input class="form-control" type="text" placeholder="Lugar" [(ngModel)]="invitacion.lugar">
-          </div>
-          <div class="mb-3">
-            <label for="" class="form-label">Descripción:</label>
-            <textarea class="form-control" aria-label="With textarea" [(ngModel)]="invitacion.detalle"></textarea>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" [(ngModel)]="invitacion.notificarEntrada">
-            <label for="" class="form-check-label">Notificar entrada</label>
+          <div class="col">
+            <div class="mb-3" >
+              <label for="" class="form-label" style="margin-bottom: -5px;">Fecha del Evento</label>
+            </div>
+            <div class="input-group mb-3">
+              <input class="form-control" type="date" placeholder="Fecha Evento" name="fechaEvento" [(ngModel)]="invitacion.fechaEvento" required>
+              <span class="input-group-text">&nbsp;</span>
+              <input class="form-control" type="time" placeholder="Hora Evento" name="horaEvento" [(ngModel)]="invitacion.horaEvento" required>
+            </div>
+            <div class="mb-3">
+              <label for="customRange1" class="form-label">Duración: {{invitacion.duracion}}&nbsp;horas </label>
+              <input type="range" class="form-range" id="customRange1" name="duracion" [(ngModel)]="invitacion.duracion" required>
+            </div>
+            <div class="mb-3">
+              <label for="" class="form-label">Lugar</label>
+              <input class="form-control" type="text" placeholder="Lugar" name="lugar" #lugar="ngModel" [(ngModel)]="invitacion.lugar" required>
+              <small *ngIf="!lugar.valid && lugar.touched" style="background-color: red;font-size: large;">Correo no válido!</small>
+            </div>
+            <div class="mb-3">
+              <label for="" class="form-label">Detalle:</label>
+              <textarea class="form-control" aria-label="With textarea" name="detalle" [(ngModel)]="invitacion.detalle"></textarea>
+            </div>
+            <div class="mb-3">
+              <input class="form-check-input" type="checkbox" name="notificarEntrada" [(ngModel)]="invitacion.notificarEntrada">
+              <label for="" class="form-check-label">Notificar entrada</label>
+            </div>
+            <div class="mb-3">
+              <input class="form-check-input" type="checkbox" name="esRecurrente" [(ngModel)]="invitacion.esRecurrente">
+              <label for="" class="form-check-label">Es recurrente</label>
+              <div>
+                <label for="" class="form-label">Núm de Recurrencias:</label>
+                <select *ngIf="invitacion.esRecurrente" name="" id="" [(ngModel)]="invitacion.numRepeticiones">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      
     </div>
-  </div>
-  <div class="row justify-content-end">
-    <div class="col">
-      <div class="button-group" role="group" aria-label="Basic Example">
-        <button class="btn btn-primary" (click)="agregarInvitacion()">{{action}}</button>
-        <button class="btn btn-danger" (click)="cancelAction()">Cancelar</button>
+  
+    <div class="row justify-content-end">
+      <div class="col">
+        <div class="button-group" role="group" aria-label="Basic Example">
+          <button class="btn btn-primary" (click)="agregarInvitacion()"  [disabled]="userForm.invalid">{{action}}</button>
+          <button class="btn btn-danger" (click)="cancelAction()">Cancelar</button>
+        </div>
       </div>
     </div>
-  </div>
+  </form>
 </div>

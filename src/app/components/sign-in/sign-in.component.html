@@ -1,0 +1,101 @@
+<div class="container" *ngIf="user">
+  <div class="row w-100 vh-100 justify-content-center align-items-center">
+    <div class="auth-box">
+      <!-- login -->
+      <div *ngIf="!isForgotPassword">
+        <div class="header">
+          <h2>Bienvenido</h2>
+          <h4>Inicia sesión con tu usuario y contraseña</h4>
+        </div>
+
+        <div class="form">
+          <input
+            type="email"
+            name="email"
+            placeholder="Correo Electrónico"
+            [(ngModel)]="user.email"
+            autocomplete="off"
+          />
+          <input
+            [type]="user.showPassword ? 'text' : 'password'"
+            name="password"
+            placeholder="Contraseña"
+            [(ngModel)]="user.password"
+          />
+
+          <div style="font-size: 12px; margin: 6px">
+            <input
+              type="checkbox"
+              [checked]="user.showPassword"
+              (change)="user.showPassword = !user.showPassword"
+            />
+            Mostrar Contraseña
+          </div>
+          <p class="forgot-password" (click)="forgotPasswordClicked()">
+            Olvidaste tu contraseña?
+          </p>
+          <p>No estás registrado? <a href="/sign-up">Registro</a></p>
+          <button (click)="signInWithCognito()">Iniciar Sesión</button>
+          <button (click)="signInWithGoogle()">
+            <i class="fab fa-google fa-lg"></i> Iniciar Sesión con Google
+          </button>
+          <button (click)="signInWithFacebook()">
+            <i class="fab fa-facebook fa-lg"></i> Iniciar Sesión con Facebook
+          </button>
+        </div>
+      </div>
+
+      <!-- forgot password -->
+      <div *ngIf="isForgotPassword">
+        <div class="header">
+          <h2>Reestablecer contraseña</h2>
+          <h4 style="color: green">
+            Se ha enviado un código de verificación a {{ user.email }}
+          </h4>
+        </div>
+        <div class="form">
+          <input
+            type="text"
+            name="verificationCode"
+            placeholder="Ingresa el código de verificación"
+            [(ngModel)]="user.code"
+          />
+          <input
+            [type]="user.showPassword ? 'text' : 'password'"
+            name="password"
+            [(ngModel)]="newPassword"
+            placeholder="Nueva Contraseña"
+          />
+          <div style="font-size: 12px; margin:8px; 0">
+            <input
+              type="checkbox"
+              [checked]="user.showPassword"
+              (change)="user.showPassword = !user.showPassword"
+            />
+            Mostrar Contraseña
+          </div>
+          <input
+            [type]="user.showPassword ? 'text' : 'password'"
+            name="password"
+            [(ngModel)]="newPasswordConfirm"
+            placeholder="Reingresar nueva Contraseña"
+          />
+          <div style="font-size: 12px; margin:8px; 0">
+            <input
+              type="checkbox"
+              [checked]="user.showPassword"
+              (change)="user.showPassword = !user.showPassword"
+            />
+            Mostrar Contraseña
+          </div>
+          <button (click)="newPasswordSubmit()">Reestablecer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-message-modal
+  *ngIf="showAlert"
+  (modalClose)="showAlert = false"
+  [message]="alertMessage"
+></app-message-modal>

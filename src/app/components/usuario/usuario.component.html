@@ -26,31 +26,12 @@
         <tbody>
           <tr *ngFor="let usuario of usuarios; let i = index" (dblclick)="editUsuario(i)" (click)="selectRow(i)"
             [class.selected]="i == HighlightRow">
-            <td>{{usuario.nombre}}</td>
-            <td>{{usuario.apellido}}</td>
-            <td>{{usuario.condominio}}</td>
-            <td>{{usuario.antiguedad}}</td>
-          </tr>
+
         </tbody>
       </table>
       <!--app-add-usuario-- *ngIf="isAdd" (cancelItemEvent)="cancelItem($event)"></!--app-add-usuario-->
       <form *ngIf="isAdd">
-        <div class="mb-3">
-          <input type="text" class="form-control" name="nombre" aria-describedby="emailHelp" placeholder="NOMBRE" [(ngModel)]="usuario.nombre">
-          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-        </div>
-        <div class="mb-3">
-          <input type="text" name="apellido" class="form-control" placeholder="APELLIDO" #apellido="ngModel"
-            [(ngModel)]="usuario.apellido">
-        </div>
-        <div class="mb-3">
-          <input type="text" name="condominio" class="form-control" placeholder="CONDOMINIO" #condominio="ngModel"
-            [(ngModel)]="usuario.condominio">
-        </div>
-        <div class="mb-3">
-          <input type="text" name="antiguedad" class="form-control" placeholder="ANTIGUEDAD" #antiguedad="ngModel"
-            [(ngModel)]="usuario.antiguedad">
-        </div>
+
         <button type="button" class="btn btn-primary" (click)="submit()">{{action}}</button>
         <button type="button" class="btn btn-danger" (click)="cancel()">Cancel</button>
       </form>

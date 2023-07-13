@@ -1,6 +1,6 @@
-export var Global ={
-  url: 'https://b3z2mndwqh.execute-api.us-east-2.amazonaws.com/dev/invitacion',
-  GUARDAR:'Guardar',
+export var Global = {
+  url: 'https://y2ld05lhn2.execute-api.us-east-1.amazonaws.com/dev/invitacion',
+  GUARDAR: 'Guardar',
   ACTUALIZAR: 'Actualizar',
-  AGREGAR: 'Agregar'
-}
+  AGREGAR: 'Agregar',
+};

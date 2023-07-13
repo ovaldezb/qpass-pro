@@ -1,9 +1,17 @@
 export class Usuario{
+
   constructor(
-    public nombre:string="",
-    public apellido: string,
-    public condominio: string,
-    public antiguedad: number
+
+    public id: string,
+    public Nombre: string,
+    public Apellidos: string,
+    public Condominio: string,
+    public Direccion: string,
+    public tipoUsuario: string,
+    public fechaNacimiento: string,
+    public rfcOrcurp: string,
+    public telefono: number
+
   ){}
 
 }

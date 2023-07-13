@@ -1,0 +1,35 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-qpasspro-dev-175351-authRole",
+      "UnauthRoleArn": "arn:aws:iam::779244979964:role/amplify-qpasspro-dev-175351-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::779244979964:role/amplify-qpasspro-dev-175351-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-qpasspro-dev-175351-deployment",
+      "UnauthRoleName": "amplify-qpasspro-dev-175351-unauthRole",
+      "StackName": "amplify-qpasspro-dev-175351",
+      "StackId": "arn:aws:cloudformation:us-east-1:779244979964:stack/amplify-qpasspro-dev-175351/6484fe90-04c5-11ee-adbc-0a2bc878981f",
+      "AmplifyAppId": "d2tundxcogzvd3",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-qpasspro-dev-175351-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+    },
+    "categories": {
+      "auth": {
+        "qpasspro2d4ebecf2d4ebecf": {},
+        "userPoolGroups": {}
+      },
+      "function": {
+        "qpasspro2d4ebecf2d4ebecfPreSignup": {
+          "deploymentBucketName": "amplify-qpasspro-dev-175351-deployment",
+          "s3Key": "amplify-builds/qpasspro2d4ebecf2d4ebecfPreSignup-2b7539686d357650775a-build.zip",
+          "secretsPathAmplifyAppId": "d2tundxcogzvd3"
+        },
+        "qpasspro2d4ebecf2d4ebecfPostConfirmation": {
+          "GROUP": "newgroup",
+          "secretsPathAmplifyAppId": "d2tundxcogzvd3",
+          "deploymentBucketName": "amplify-qpasspro-dev-175351-deployment",
+          "s3Key": "amplify-builds/qpasspro2d4ebecf2d4ebecfPostConfirmation-6a505a55354171515637-build.zip"
+        }
+      }
+    }
+  }
+}

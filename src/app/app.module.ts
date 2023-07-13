@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CookieService } from 'ngx-cookie-service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,14 +16,23 @@ import { FormsModule } from '@angular/forms';
 import { AgregarInvitacionComponent } from './components/agregar-invitacion/agregar-invitacion.component';
 import { ListaInvitacionesComponent } from './components/lista-invitaciones/lista-invitaciones.component';
 import { ReactiveFormsModule } from '@angular/forms';
+
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 
 //Servicios -> Models
 import { UsuariosService } from './APIv1/usuarios.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ListaUsuariosComponent } from './components/lista-usuarios/lista-usuarios.component';
 import { AddEditUsuariosComponent } from './components/add-edit-usuarios/add-edit-usuarios.component';
+import { QRCodeModule } from 'angular2-qrcode';
+import { CondominiosComponent } from './components/condominios/condominios.component';
+import { ListaCondominiosComponent } from './components/lista-condominios/lista-condominios.component';
+import { AddEditCondominiosComponent } from './components/add-edit-condominios/add-edit-condominios.component';
 
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
+import { MessageModalComponent } from './components/message-modal/message-modal.component';
+import { ApiRestInterceptor } from './interceptors/api-rest.interceptor';
 
 @NgModule({
   declarations: [
@@ -38,16 +48,28 @@ import { AddEditUsuariosComponent } from './components/add-edit-usuarios/add-edi
     ListaInvitacionesComponent,
     UsuariosComponent,
     ListaUsuariosComponent,
-    AddEditUsuariosComponent
+    AddEditUsuariosComponent,
+    CondominiosComponent,
+    ListaCondominiosComponent,
+    AddEditCondominiosComponent,
+
+    SignUpComponent,
+    SignInComponent,
+    MessageModalComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    QRCodeModule,
   ],
-  providers: [UsuariosService],
-  bootstrap: [AppComponent]
+  providers: [UsuariosService, CookieService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: ApiRestInterceptor,
+    multi: true
+  }],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

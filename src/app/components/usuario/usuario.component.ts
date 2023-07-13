@@ -14,16 +14,14 @@ export class UsuarioComponent implements OnInit {
   public isDelete:boolean=false;
   public isList:boolean=true;
   public usuarios:Usuario[]=[];
-  public usuario:Usuario;
+  public usuario: Usuario[] = [];
+  newUsuario = new Usuario('', '', '', '', '', '', '', '', 0);
   public HighlightRow : number=-1;
   public action:string='Enviar';
   
   constructor() { 
     //this.usuario = new Usuario('Juan','Perez','Americas',2);
-    this.usuarios.push(new Usuario('Juan','Perez','Americas',2));
-    this.usuarios.push(new Usuario('Guillermo','Vazquez','Solidaridad',3));
-    this.usuarios.push(new Usuario('Miguel','Contreras','Las Torres',4));
-    this.usuario = new Usuario('','','',0);
+
   }
 
   ngOnInit(): void {
@@ -47,7 +45,7 @@ export class UsuarioComponent implements OnInit {
       swal.fire('Seleccione un renglón');
     }
     this.action = 'Actualizar';
-    this.usuario = this.usuarios[this.HighlightRow];
+    
     this.HighlightRow = -1;
     this.isAdd = true;
     this.isList = false;
@@ -56,10 +54,10 @@ export class UsuarioComponent implements OnInit {
 
   submit():void{
     if(this.isUpdate){
-      this.usuarios[this.HighlightRow] = this.usuario;
-      this.usuario = new Usuario('','','',0);
+      
+     
     }else{
-      this.usuarios.push(this.usuario);
+      
     }
     this.isUpdate = false;
     this.isAdd = false;
