@@ -4,6 +4,7 @@ import { InvitacionesService } from 'src/app/services/invitaciones/invitaciones.
 import { Global } from '../../services/global';
 import Swal from 'sweetalert2';
 import * as CryptoJS from 'crypto-js';
+import { Auth } from 'aws-amplify';
 
 @Component({
   selector: 'app-agregar-invitacion',
@@ -18,12 +19,15 @@ export class AgregarInvitacionComponent implements OnInit {
   public action:String="Guardar";
   public isQR:boolean=false;
   public title:string="Nueva Invitación";
+  public user_attributes: any;
+  private grupo:string='';
   constructor(private invitacionService: InvitacionesService) { }
 
   ngOnInit(): void {
+    this.getUserDetails();
     this.action = Global.GUARDAR
     this.isQR = false;
-    console.log(this.invitacion);
+    //console.log(this.invitacion);
     if(this.invitacion._id !== ''){
       this.action = Global.ACTUALIZAR;
       this.title="Actualizar Invitación";
@@ -37,6 +41,18 @@ export class AgregarInvitacionComponent implements OnInit {
     }
   }
 
+  private getUserDetails() {
+    Auth.currentAuthenticatedUser()
+      .then((user: any) => {
+        this.user_attributes = user.attributes;
+        console.log(this.user_attributes);
+        this.invitacion.anfitrion = this.user_attributes.given_name +' '+this.user_attributes.family_name;
+        this.grupo=user.signInUserSession.accessToken.payload['cognito:groups'];
+      })
+      .catch((err) => {
+        alert(err.message || JSON.stringify(err));
+      });
+  }
   
   agregarInvitacion():void{
     if(this.action===Global.GUARDAR){

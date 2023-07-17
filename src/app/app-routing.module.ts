@@ -25,13 +25,9 @@ const routes: Routes = [
   },
   { path: 'usuario', component: UsuarioComponent, canActivate: [HomeGuard] },
   { path: 'Usuarios', component: UsuariosComponent, canActivate: [HomeGuard] },
-  {
-    path: 'condominios',
-    component: CondominiosComponent    canActivate: [HomeGuard],
-  },
-
+  { path: 'condominios', component: CondominiosComponent, canActivate: [HomeGuard] },
   { path: '**', redirectTo: '', pathMatch: 'full', canActivate: [AuthGuard] },
-  { path:'bulk-users', component: BulkUsersComponent },
+  { path:'bulk-users', component: BulkUsersComponent, canActivate: [HomeGuard] },
 ];
 
 @NgModule({

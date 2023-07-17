@@ -12,11 +12,9 @@ import { AddUsuarioComponent } from './components/add-usuario/add-usuario.compon
 import { ListaUsuarioComponent } from './components/lista-usuario/lista-usuario.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { FormsModule } from '@angular/forms';
-
 import { AgregarInvitacionComponent } from './components/agregar-invitacion/agregar-invitacion.component';
 import { ListaInvitacionesComponent } from './components/lista-invitaciones/lista-invitaciones.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 
 //Servicios -> Models
@@ -53,10 +51,9 @@ import { BulkUsersComponent } from './components/bulk-users/bulk-users.component
     CondominiosComponent,
     ListaCondominiosComponent,
     AddEditCondominiosComponent,
-
     SignUpComponent,
     SignInComponent,
-    MessageModalComponent,,
+    MessageModalComponent,
     BulkUsersComponent
   ],
   imports: [

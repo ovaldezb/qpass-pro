@@ -1,9 +1,10 @@
 export var Global ={
-
-  urlInvitacion: 'https://i1nu7khbcg.execute-api.us-east-1.amazonaws.com/dev/invitacion',
-  urlUsuarios: 'https://lw5e5ki809.execute-api.us-east-1.amazonaws.com/dev/usuario',
-  urlCondominios: 'https://ipz5z3hru6.execute-api.us-east-1.amazonaws.com/dev/condominio',
+  urlBulk:        'https://g58r70ecxc.execute-api.us-east-1.amazonaws.com/dev/bulk',
+  urlCondominios: 'https://4hlvf0za04.execute-api.us-east-1.amazonaws.com/dev/condominio',
+  urlInvitacion:  'https://x9l74k0e12.execute-api.us-east-1.amazonaws.com/dev/invitacion',
+  urlUsuarios:   'https://i6silizwtl.execute-api.us-east-1.amazonaws.com/dev/usuario',
   GUARDAR:'Guardar',
   ACTUALIZAR: 'Actualizar',
   AGREGAR: 'Agregar' ,
+  INQUIILINOS:'Inquilinos'
 };
