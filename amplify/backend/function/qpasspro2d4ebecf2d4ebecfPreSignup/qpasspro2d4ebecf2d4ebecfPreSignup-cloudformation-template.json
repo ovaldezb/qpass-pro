@@ -322,7 +322,9 @@
                 "cognito-idp:AdminCreateUser",
                 "cognito-idp:AdminLinkProviderForUser",
                 "cognito-idp:AdminSetUserPassword",
-                "cognito-idp:AdminConfirmSignUp"
+                "cognito-idp:AdminConfirmSignUp",
+                "cognito-idp:CreateGroup",
+                "cognito-idp:AdminAddUserToGroup"
               ],
               "Resource": {
                 "Fn::Sub": [

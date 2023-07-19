@@ -65,11 +65,15 @@ import { ApiRestInterceptor } from './interceptors/api-rest.interceptor';
     HttpClientModule,
     QRCodeModule,
   ],
-  providers: [UsuariosService, CookieService, {
-    provide: HTTP_INTERCEPTORS,
-    useClass: ApiRestInterceptor,
-    multi: true
-  }],
+  providers: [
+    UsuariosService,
+    CookieService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiRestInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
