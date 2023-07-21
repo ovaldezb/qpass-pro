@@ -62,6 +62,7 @@ export class AddEditCondominiosComponent implements OnInit {
       }
      this.condosGroupForm.reset();*/
 
+
       this.service
         .updateCondominio(this.condo.id, this.condo)
         .subscribe((res) => {

@@ -26,6 +26,7 @@ export class InvitacionesService {
     return this._http.delete(this.url + '/' + idInvitacion, {
       headers: this.headers,
     });
+
   }
 
   updateInvitacion(

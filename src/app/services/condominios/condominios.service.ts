@@ -4,8 +4,10 @@ import { Observable } from 'rxjs';
 import { Global } from '../global';
 import { Condominio } from 'src/app/models/condominio';
 
+
 @Injectable()
 export class CondominiosService {
+
   private url: string;
   private headers = new HttpHeaders().set('Content-Type', 'application/json');
   constructor(private _http: HttpClient) {

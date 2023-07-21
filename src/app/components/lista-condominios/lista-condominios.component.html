@@ -16,11 +16,11 @@
         </thead>
         <tbody>
             <tr *ngFor="let condo of condominios; let i = index">
-                <td role="button">{{condo.id}}</td>
+                <td role="button">{{condo._id}}</td>
                 <td role="button">{{condo.Condominio}}</td>
                 <td role="button">{{condo.Direccion}}</td>
                 <td role="button">{{condo.Telefono}}</td>
-                <td><i class="bi-5 bi-trash" (click)="eliminarCondo(condo.id)"></i>
+                <td><i class="bi-5 bi-trash" (click)="eliminarCondo(condo._id)"></i>
                     <i class="bi-5 bi-pencil-square" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
                         data-placement="top" title="Editar" (click)="editarCondo(condo)"></i>
                 </td>

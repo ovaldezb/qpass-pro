@@ -4,7 +4,7 @@
             <tr>
                 <td>
 
-                    <input type="hidden" class="form-control" [(ngModel)]="condo.id" />
+                    <input type="hidden" class="form-control" [(ngModel)]="condo._id" />
                     <span class="input-group-text" id="basic-addon3">Condominio</span>
                     <input [(ngModel)]="condo.Condominio" type="text" placeholder="Nombre del Condominio"
                         autocomplete="off" class="form-control" id="basic-addon3" aria-describedby="basic-addon3">
@@ -36,9 +36,9 @@
     </div>
 
     <!--<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModal()">Cancelar </button>-->
-    <button *ngIf="condo.id" type="submit" class="btn btn-primary" data-bs-dismiss="modal"
+    <button *ngIf="condo._id" type="submit" class="btn btn-primary" data-bs-dismiss="modal"
         (click)="onFormSubmit()">Editar</button>
 
-    <button *ngIf="!condo.id" type="submit" class="btn btn-primary" data-bs-dismiss="modal"
+    <button *ngIf="!condo._id" type="submit" class="btn btn-primary" data-bs-dismiss="modal"
         (click)="onFormSubmit()">Agregar</button>
 </div>

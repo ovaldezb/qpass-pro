@@ -13,7 +13,6 @@ import swal from 'sweetalert2';
 export class ListaInvitacionesComponent implements OnInit {
 
   public HighlightRow: number = -1;
-  public isSelected: boolean =false;
   public isAdd:boolean=false;
   public isList:boolean=true;
   public invitaciones:Invitacion[]=[];
@@ -24,10 +23,9 @@ export class ListaInvitacionesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.isSelected=false;
+    //this.isSelected=false;
     this.invitacionService.getInvitaciones().subscribe(
         (res)=>{
-          //console.log(res);
           if(res.length > 0){
             this.invitaciones = res;
             this.isList = true;
@@ -42,7 +40,7 @@ export class ListaInvitacionesComponent implements OnInit {
 
   selectRow(index: number): void {
     this.HighlightRow = index;
-    this.isSelected = true;
+    //this.isSelected = true;
   }
   deleteInvitacion():void{
     swal.fire({
@@ -54,6 +52,7 @@ export class ListaInvitacionesComponent implements OnInit {
         this.invitacionService.deleteInvitacion(this.invitaciones[this.HighlightRow]._id).subscribe(res=>{
           this.loadInvitaciones();
           swal.fire('La invitación se ha eliminado correctamente');
+          this.HighlightRow = -1;
         });
       }
     });

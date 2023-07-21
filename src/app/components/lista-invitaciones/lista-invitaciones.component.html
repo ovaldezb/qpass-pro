@@ -1,42 +1,46 @@
 <app-navbar></app-navbar>
 <div class="container-fluid">
   <div class="row flewx-nowrap">
-    <div class="col-auto col-md-auto col-xl-auto px-sm-2 px-0 bg-dark">
+    <div class="col-auto col-md-auto col-xl-auto px-sm-2 px-0 bg-light">
       <app-left-menu></app-left-menu>
     </div>
     <div class="col py-3">
       <div class="container">
-        <table *ngIf="isList" class="table">
+        <table *ngIf="isList" class="table is-fullwidth" style="margin: auto;">
           <thead>
             <tr>
               <td><i class="bi bi-plus-circle" (click)="agregarInvitacion()"></i></td>
-              <td><i class="bi bi-trash" (click)="deleteInvitacion()" *ngIf="isSelected"></i></td>
-              <td><i class="bi bi-pencil-square" (click)="updateInvitacion()" *ngIf="isSelected"></i></td>
+              <td><i class="bi bi-trash" (click)="deleteInvitacion()" *ngIf="HighlightRow>=0"></i></td>
+              <td><i class="bi bi-pencil-square" (click)="updateInvitacion()" *ngIf="HighlightRow>=0"></i></td>
             </tr>
           </thead>
         </table>
-        <table *ngIf="isList" class="table table-hover">
+        <table *ngIf="isList" class="table is-fullwidth is-bordered" style="margin: auto;">
           <thead>
             <tr>
-              <th>Anfitrión</th>
-              <th>Asunto</th>
-              <th>Duracion</th>
-              <th>Nombre Invitado</th>
-              <th>Fecha Evento</th>
-              <th>Lugar</th>
+              <th style="width: 20%;text-align: center;">Anfitrión</th>
+              <th style="width: 15%;text-align: center;">Asunto</th>
+              <th style="width: 15%;text-align: center;">Duracion</th>
+              <th style="width: 20%;text-align: center;">Nombre Invitado</th>
+              <th style="width: 15%;text-align: center;">Fecha Evento</th>
+              <th style="width: 15%;text-align: center;">Lugar</th>
             </tr>
           </thead>
-          <tbody>
-            <tr *ngFor="let invitacion of invitaciones; let i = index" (click)="selectRow(i)" [class.selected]= "i == HighlightRow" >
-              <td>{{invitacion.anfitrion}}</td>
-              <td>{{invitacion.asunto}}</td>
-              <td>{{invitacion.duracion}}</td>
-              <td>{{invitacion.nombreInvitado}}</td>
-              <td>{{invitacion.fechaEvento |date}}&nbsp;{{invitacion.horaEvento}}</td>
-              <td>{{invitacion.lugar}}</td>
-            </tr>
-          </tbody>
         </table>
+        <div *ngIf="isList" style="height: 450px;overflow: auto; border: 1px solid grey;">
+          <table class="table table-hover is-bordered is-fullwidth">
+            <tbody>
+              <tr *ngFor="let invitacion of invitaciones; let i = index" (click)="selectRow(i)" [class.selected]= "i == HighlightRow" >
+                <td style="width: 20%;text-align: left;">{{invitacion.anfitrion}}</td>
+                <td style="width: 15%;text-align: center;">{{invitacion.asunto}}</td>
+                <td style="width: 15%;text-align: center;">{{invitacion.duracion}}</td>
+                <td style="width: 20%;text-align: center;">{{invitacion.nombreInvitado}}</td>
+                <td style="width: 15%;text-align: center;">{{invitacion.fechaEvento |date}}&nbsp;{{invitacion.horaEvento}}</td>
+                <td style="width: 15%;text-align: center;">{{invitacion.lugar}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <div style="margin-top: 30px;">
           <app-agregar-invitacion *ngIf="isAdd" [invitacion]="invitacion" (cancelStatus)="cancelStatus($event)"></app-agregar-invitacion>
         </div>
