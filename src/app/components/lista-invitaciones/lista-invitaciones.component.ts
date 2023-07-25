@@ -8,82 +8,120 @@ import swal from 'sweetalert2';
   selector: 'app-lista-invitaciones',
   templateUrl: './lista-invitaciones.component.html',
   styleUrls: ['./lista-invitaciones.component.scss'],
-  providers: [InvitacionesService]
+  providers: [InvitacionesService],
 })
 export class ListaInvitacionesComponent implements OnInit {
-
   public HighlightRow: number = -1;
-  public isAdd:boolean=false;
-  public isList:boolean=true;
-  public invitaciones:Invitacion[]=[];
-  public invitacion:Invitacion = new Invitacion("", "","",0,"","","", new Date(),0, "","",false,'','',new Date(),false,false,0);
-  
-  constructor(private _router : Router, private invitacionService: InvitacionesService) { 
+  public isAdd: boolean = false;
+  public isList: boolean = true;
+  public invitaciones: Invitacion[] = [];
+  public invitacion: Invitacion = new Invitacion(
+    '',
+    '',
+    '',
+    0,
+    '',
+    '',
+    '',
+    new Date(),
+    0,
+    '',
+    '',
+    false,
+    '',
+    '',
+    new Date(),
+    false,
+    false,
+    0
+  );
 
-  }
+  constructor(
+    private _router: Router,
+    private invitacionService: InvitacionesService
+  ) {}
 
   ngOnInit(): void {
     //this.isSelected=false;
-    this.invitacionService.getInvitaciones().subscribe(
-        (res)=>{
-          if(res.length > 0){
-            this.invitaciones = res;
-            this.isList = true;
-            this.isAdd = false;
-          }else{
-            this.isList = false;
-            this.isAdd = true;
-          }
-        }
-      );
+    this.invitacionService.getInvitaciones().subscribe((res) => {
+      if (res.length > 0) {
+        this.invitaciones = res;
+        this.isList = true;
+        this.isAdd = false;
+      } else {
+        this.isList = false;
+        this.isAdd = true;
+      }
+    });
   }
 
   selectRow(index: number): void {
     this.HighlightRow = index;
     //this.isSelected = true;
   }
-  deleteInvitacion():void{
-    swal.fire({
-      title:'Desea eliminar esta Invitacion',
-      showCancelButton:true,
-      confirmButtonText:'Borrar'
-    }).then((result)=>{
-      if(result.isConfirmed){
-        this.invitacionService.deleteInvitacion(this.invitaciones[this.HighlightRow]._id).subscribe(res=>{
-          this.loadInvitaciones();
-          swal.fire('La invitación se ha eliminado correctamente');
-          this.HighlightRow = -1;
-        });
-      }
-    });
-
+  deleteInvitacion(): void {
+    swal
+      .fire({
+        title: 'Desea eliminar esta Invitacion',
+        showCancelButton: true,
+        confirmButtonText: 'Borrar',
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          this.invitacionService
+            .deleteInvitacion(this.invitaciones[this.HighlightRow]._id)
+            .subscribe((res) => {
+              this.loadInvitaciones();
+              swal.fire('La invitación se ha eliminado correctamente');
+              this.HighlightRow = -1;
+            });
+        }
+      });
   }
-  agregarInvitacion():void{
+  agregarInvitacion(): void {
     this.isList = false;
     this.isAdd = true;
   }
 
-  updateInvitacion():void{
+  updateInvitacion(): void {
     this.invitacion = this.invitaciones[this.HighlightRow];
     this.isList = false;
     this.isAdd = true;
   }
 
-  cancelStatus(event:any):void{
+  cancelStatus(event: any): void {
     this.isList = true;
     this.isAdd = false;
     this.HighlightRow = -1;
-    this.invitacion = new Invitacion("", "","",0,"","","", new Date(),0, "","",false,'','',new Date(),false,false,0);
-    //console.log(event);
-    if(event.load){
+    this.invitacion = new Invitacion(
+      '',
+      '',
+      '',
+      0,
+      '',
+      '',
+      '',
+      new Date(),
+      0,
+      '',
+      '',
+      false,
+      '',
+      '',
+      new Date(),
+      false,
+      false,
+      0
+    );
+    ////console.log(event);
+    if (event.load) {
       this.loadInvitaciones();
     }
   }
 
-  loadInvitaciones():void{
-    this.invitacionService.getInvitaciones().subscribe((res)=>{
+  loadInvitaciones(): void {
+    this.invitacionService.getInvitaciones().subscribe((res) => {
       this.invitaciones = res;
     });
   }
-
 }

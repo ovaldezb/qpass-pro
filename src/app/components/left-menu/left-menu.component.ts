@@ -25,7 +25,7 @@ export class LeftMenuComponent implements OnInit {
     Auth.currentUserInfo()
       .then((user: any) => {
         this.user_attributes = user.attributes;
-        console.log(user);
+        //console.log(user);
         if (user.attributes.picture.includes('fbsbx'))
           this.user_attributes.picture = JSON.parse(
             user.attributes.picture
@@ -35,18 +35,18 @@ export class LeftMenuComponent implements OnInit {
         alert(err.message || JSON.stringify(err));
       });
     Auth.currentSession().then((session: any) => {
-      console.log(session);
+      //console.log(session);
       var idCondominio = String(
         session.idToken.payload['cognito:groups'][0]
       ).split('_')[1];
-      console.log(
+      //console.log(
         String(session.idToken.payload['cognito:groups'][0]).split('_')[1]
       );
       this.condominiosService.getCondominio(idCondominio).subscribe((data) => {
         this.condominio = data;
       });
       // var sessionIdInfo =  jwtDecode(session.getIdToken().jwtToken);
-      // console.log(sessionIdInfo['cognito:groups']);
+      // //console.log(sessionIdInfo['cognito:groups']);
     });
   }
   signOutWithCognito() {

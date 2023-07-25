@@ -56,7 +56,7 @@ export class ListaCondominiosComponent implements OnInit {
   }
 
   respuestaUpdate(event: boolean) {
-    console.log(event);
+    //console.log(event);
 
     this.refreshCondos();
   }
