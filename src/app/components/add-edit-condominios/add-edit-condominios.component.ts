@@ -20,23 +20,6 @@ export class AddEditCondominiosComponent implements OnInit {
 
   ngOnInit(): void {
     this.condo = this.condo;
-
-    if (this.mission == 'Editar Condominio') {
-      console.log('entra Editar');
-
-      /*  this.condosGroupForm = this.condosInfo.group({
-
-        condoId: [this.condo["id"], Validators.required],
-        condominio: [this.condo["Condominio"], Validators.required],
-        telefono: [this.condo["Telefono"], Validators.required],
-        direccion: [this.condo["Direccion"], Validators.required]
-
-      });*/
-    } else if (this.mission == 'Agregar Condominio') {
-      //this.condo = new Condominio('', '', '', 0);
-    }
-
-    //this.condosGroupForm.reset();
   }
 
   onFormSubmit() {
@@ -44,10 +27,6 @@ export class AddEditCondominiosComponent implements OnInit {
 
     if (this.mission == 'Agregar Condominio') {
       console.log(this.condo);
-      /* this.apiRequest = {"Condominio": this.condosGroupForm.value.condominio,
-                       "Direccion": this.condosGroupForm.value.direccion,
-                       "Telefono": this.condosGroupForm.value.telefono 
-                      }*/
 
       this.service.addCondominio(this.condo).subscribe((res) => {
         this.apiResponse = res;
@@ -55,13 +34,6 @@ export class AddEditCondominiosComponent implements OnInit {
       });
     } else if (this.mission == 'Editar Condominio') {
       console.log('editar');
-      /*  this.apiRequest = {
-        "Condominio": this.condosGroupForm.value.condominio,
-        "Direccion": this.condosGroupForm.value.direccion,
-        "Telefono": this.condosGroupForm.value.telefono
-      }
-     this.condosGroupForm.reset();*/
-
 
       this.service
         .updateCondominio(this.condo.id, this.condo)
