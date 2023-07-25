@@ -20,7 +20,7 @@
       "function": {
         "qpasspro2d4ebecf2d4ebecfPreSignup": {
           "deploymentBucketName": "amplify-qpasspro-dev-175351-deployment",
-          "s3Key": "amplify-builds/qpasspro2d4ebecf2d4ebecfPreSignup-2b7539686d357650775a-build.zip",
+          "s3Key": "amplify-builds/qpasspro2d4ebecf2d4ebecfPreSignup-5165372f664e3133324c-build.zip",
           "secretsPathAmplifyAppId": "d2tundxcogzvd3"
         },
         "qpasspro2d4ebecf2d4ebecfPostConfirmation": {

@@ -1,5 +1,12 @@
 const aws = require("aws-sdk");
 const database = require("./database");
+const {
+  CognitoIdentityProviderClient,
+  AdminAddUserToGroupCommand,
+  GetGroupCommand,
+  CreateGroupCommand,
+} = require("@aws-sdk/client-cognito-identity-provider");
+const cognitoIdentityServiceProvider = new CognitoIdentityProviderClient({});
 
 const handler = async (event) => {
   const aws = require("aws-sdk");
@@ -21,7 +28,7 @@ const handler = async (event) => {
   Parameters.forEach((element) => {
     parameters_dict[element.Name] = element.Value;
   });
-  console.log("evento de presignup " + JSON.stringify(event));
+  //console.log("evento de presignup " + JSON.stringify(event));
   const userPoolId = event.userPoolId;
   const trigger = event.triggerSource;
   const email = event.request.userAttributes.email;
@@ -109,6 +116,39 @@ const handler = async (event) => {
             Permanent: true,
           })
           .promise();
+        const groupParams = {
+          GroupName:
+            potencial_usuario.tipoUsuario +
+            "_" +
+            potencial_usuario.idCondominio,
+          UserPoolId: userPoolId,
+        };
+        const addUserParams = {
+          GroupName:
+            potencial_usuario.tipoUsuario +
+            "_" +
+            potencial_usuario.idCondominio,
+          UserPoolId: userPoolId,
+          Username: newUser.User.Username,
+        };
+        /**
+         * Check if the group exists; if it doesn't, create it.
+         */
+        try {
+          await cognitoIdentityServiceProvider.send(
+            new GetGroupCommand(groupParams)
+          );
+        } catch (e) {
+          await cognitoIdentityServiceProvider.send(
+            new CreateGroupCommand(groupParams)
+          );
+        }
+        /**
+         * Then, add the user to the group.
+         */
+        await cognitoIdentityServiceProvider.send(
+          new AdminAddUserToGroupCommand(addUserParams)
+        );
 
         return newUser.User.Username;
       })

@@ -67,11 +67,15 @@ import { BulkUsersComponent } from './components/bulk-users/bulk-users.component
     HttpClientModule,
     QRCodeModule,
   ],
-  providers: [UsuariosService, CookieService, {
-    provide: HTTP_INTERCEPTORS,
-    useClass: ApiRestInterceptor,
-    multi: true
-  }],
+  providers: [
+    UsuariosService,
+    CookieService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiRestInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -2,46 +2,47 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Global } from '../global';
+import { Condominio } from 'src/app/models/condominio';
 
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class CondominiosService {
 
-  readonly API_Url = 'http://localhost:5007'
-
-  constructor(private http: HttpClient) { }
-
-  getCondo(id: any): Observable<any[]> {
-
-    return this.http.get<any>(Global.urlCondominios + "/" + id);
-
+  private url: string;
+  private headers = new HttpHeaders().set('Content-Type', 'application/json');
+  constructor(private _http: HttpClient) {
+    this.url = Global.urlCondominios + '/condominio';
   }
 
-  getCondos(): Observable<any[]> {
-
-    return this.http.get<any>(Global.urlCondominios);
-
+  addCondominio(condominio: Condominio): Observable<any> {
+    return this._http.post(this.url, JSON.stringify(condominio), {
+      headers: this.headers,
+    });
   }
 
-  addNewCondo(nuevoCondominio: any) {
-
-    return this.http.post(Global.urlCondominios, nuevoCondominio);
-
+  getCondominio(idCondominio: any): Observable<any> {
+    return this._http.get(this.url + '/' + idCondominio, {
+      headers: this.headers,
+    });
+  }
+  getCondominios(): Observable<any> {
+    return this._http.get(this.url, { headers: this.headers });
   }
 
-  updateCondominio(id_: any, modifyCondominio: any) {
-
-    return this.http.put(Global.urlCondominios + "/" + id_, modifyCondominio);
-
+  deleteCondominio(idCondominio: String): Observable<any> {
+    return this._http.delete(this.url + '/' + idCondominio, {
+      headers: this.headers,
+    });
   }
 
-  deleteCondominio(id_: any) {
-
-    return this.http.delete(Global.urlCondominios + "/" + id_);
-
+  updateCondominio(
+    idCondominio: String,
+    condominio: Condominio
+  ): Observable<any> {
+    return this._http.put(
+      this.url + '/' + idCondominio,
+      JSON.stringify(condominio),
+      { headers: this.headers }
+    );
   }
-
-
 }
