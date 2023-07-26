@@ -35,13 +35,10 @@ export class LeftMenuComponent implements OnInit {
         alert(err.message || JSON.stringify(err));
       });
     Auth.currentSession().then((session: any) => {
-      //console.log(session);
       var idCondominio = String(
         session.idToken.payload['cognito:groups'][0]
       ).split('_')[1];
-      //console.log(
-        String(session.idToken.payload['cognito:groups'][0]).split('_')[1]
-      );
+
       this.condominiosService.getCondominio(idCondominio).subscribe((data) => {
         this.condominio = data;
       });

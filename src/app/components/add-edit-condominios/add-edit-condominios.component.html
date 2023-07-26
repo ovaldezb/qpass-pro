@@ -1,44 +1,76 @@
 <div class="modal-body">
-    <div class="form-group row" id="users-form">
-        <table class="table-info table-striped">
-            <tr>
-                <td>
-
-                    <input type="hidden" class="form-control" [(ngModel)]="condo._id" />
-                    <span class="input-group-text" id="basic-addon3">Condominio</span>
-                    <input [(ngModel)]="condo.Condominio" type="text" placeholder="Nombre del Condominio"
-                        autocomplete="off" class="form-control" id="basic-addon3" aria-describedby="basic-addon3">
-                </td>
-
-            </tr>
-            <tr>
-                <td><span class="input-group-text" id="basic-addon3">Direccion</span>
-                    <input [(ngModel)]="condo.Direccion" type="text" placeholder="Direccion del Condominio"
-                        autocomplete="off" class="form-control" id="basic-addon3" aria-describedby="basic-addon3">
-                </td>
-            </tr>
-            <tr>
-                <td><span class="input-group-text" id="basic-addon3">Telefono</span>
-                    <input [(ngModel)]="condo.Telefono" type="text" placeholder="Telefono" autocomplete="off"
-                        class="form-control" id="basic-addon3" aria-describedby="basic-addon3">
-                </td>
-            </tr>
-        </table>
-
-
-    </div>
+  <div class="form-group row" id="users-form">
+    <table class="table-info table-striped">
+      <tr>
+        <td>
+          <input type="hidden" class="form-control" [(ngModel)]="condo._id" />
+          <span class="input-group-text" id="basic-addon3">Condominio</span>
+          <input
+            [(ngModel)]="condo.Condominio"
+            type="text"
+            placeholder="Nombre del Condominio"
+            autocomplete="off"
+            class="form-control"
+            id="basic-addon3"
+            aria-describedby="basic-addon3"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <span class="input-group-text" id="basic-addon3">Direccion</span>
+          <input
+            [(ngModel)]="condo.Direccion"
+            type="text"
+            placeholder="Direccion del Condominio"
+            autocomplete="off"
+            class="form-control"
+            id="basic-addon3"
+            aria-describedby="basic-addon3"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <span class="input-group-text" id="basic-addon3">Telefono</span>
+          <input
+            [(ngModel)]="condo.Telefono"
+            type="text"
+            placeholder="Telefono"
+            autocomplete="off"
+            class="form-control"
+            id="basic-addon3"
+            aria-describedby="basic-addon3"
+          />
+        </td>
+      </tr>
+    </table>
+  </div>
 </div>
 
 <div class="modal-footer">
+  <div class="spinner-border text-secondary" role="status">
+    <span class="sr-only"></span>
+  </div>
 
-    <div class="spinner-border text-secondary" role="status">
-        <span class="sr-only"></span>
-    </div>
+  <!--<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModal()">Cancelar </button>-->
+  <button
+    *ngIf="condo._id"
+    type="submit"
+    class="btn btn-primary"
+    data-bs-dismiss="modal"
+    (click)="onFormSubmit()"
+  >
+    Editar
+  </button>
 
-    <!--<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModal()">Cancelar </button>-->
-    <button *ngIf="condo._id" type="submit" class="btn btn-primary" data-bs-dismiss="modal"
-        (click)="onFormSubmit()">Editar</button>
-
-    <button *ngIf="!condo._id" type="submit" class="btn btn-primary" data-bs-dismiss="modal"
-        (click)="onFormSubmit()">Agregar</button>
+  <button
+    *ngIf="!condo._id"
+    type="submit"
+    class="btn btn-primary"
+    data-bs-dismiss="modal"
+    (click)="onFormSubmit()"
+  >
+    Agregar
+  </button>
 </div>

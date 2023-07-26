@@ -56,8 +56,8 @@ import { BulkUsersComponent } from './components/bulk-users/bulk-users.component
 
     SignUpComponent,
     SignInComponent,
-    MessageModalComponent,,
-    BulkUsersComponent
+    MessageModalComponent,
+    BulkUsersComponent,
   ],
   imports: [
     BrowserModule,

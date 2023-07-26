@@ -1,46 +1,77 @@
 <div class="col-6">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th></th>
-                <th><i class="bi-5 bi-plus-circle" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                        data-placement="top" title="Agregar" (click)="agregarCondo()"></i></th>
-            </tr>
-            <tr>
-                <th>id</th>
-                <th>Condominio</th>
-                <th>Direccion</th>
-                <th>Telefono</th>
-                <th>Operacion</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let condo of condominios; let i = index">
-                <td role="button">{{condo._id}}</td>
-                <td role="button">{{condo.Condominio}}</td>
-                <td role="button">{{condo.Direccion}}</td>
-                <td role="button">{{condo.Telefono}}</td>
-                <td><i class="bi-5 bi-trash" (click)="eliminarCondo(condo._id)"></i>
-                    <i class="bi-5 bi-pencil-square" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                        data-placement="top" title="Editar" (click)="editarCondo(condo)"></i>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th></th>
+        <th>
+          <i
+            class="bi-5 bi-plus-circle"
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop"
+            data-placement="top"
+            title="Agregar"
+            (click)="agregarCondo()"
+          ></i>
+        </th>
+      </tr>
+      <tr>
+        <th>id</th>
+        <th>Condominio</th>
+        <th>Direccion</th>
+        <th>Telefono</th>
+        <th>Operacion</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let condo of condominios; let i = index">
+        <td role="button">{{ condo._id }}</td>
+        <td role="button">{{ condo.Condominio }}</td>
+        <td role="button">{{ condo.Direccion }}</td>
+        <td role="button">{{ condo.Telefono }}</td>
+        <td>
+          <i class="bi-5 bi-trash" (click)="eliminarCondo(condo._id)"></i>
+          <i
+            class="bi-5 bi-pencil-square"
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop"
+            data-placement="top"
+            title="Editar"
+            (click)="editarCondo(condo)"
+          ></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">{{ModalTitle}}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                    (click)="closeModal()"></button>
-            </div>
-            <app-add-edit-condominios [mission]="ModalTitle" [condo]="newCondominio" (update)="respuestaUpdate($event)"
-                *ngIf="taskMission"></app-add-edit-condominios>
-        </div>
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">{{ ModalTitle }}</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="closeModal()"
+        ></button>
+      </div>
+      <app-add-edit-condominios
+        [mission]="ModalTitle"
+        [condo]="newCondominio"
+        (update)="respuestaUpdate($event)"
+        *ngIf="taskMission"
+      ></app-add-edit-condominios>
     </div>
+  </div>
 </div>
