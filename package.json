@@ -28,7 +28,6 @@
     "crypto-js": "^4.1.1",
     "jquery": "^3.6.1",
     "mongoose": "^7.3.1",
-    "ngx-cookie-service": "^13.0.0",
     "rxjs": "~7.5.0",
     "sweetalert2": "^11.4.37",
     "tslib": "^2.3.0",
