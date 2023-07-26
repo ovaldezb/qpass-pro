@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-//import { CookieService } from 'ngx-cookie-service';
+import { CookieService } from 'ngx-cookie-service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -69,7 +69,7 @@ import { BulkUsersComponent } from './components/bulk-users/bulk-users.component
   ],
   providers: [
     UsuariosService,
-    //CookieService,
+    CookieService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiRestInterceptor,
