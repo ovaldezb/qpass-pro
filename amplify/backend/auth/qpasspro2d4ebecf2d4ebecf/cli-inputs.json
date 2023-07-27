@@ -82,7 +82,7 @@
     "dependsOn": [
       {
         "category": "function",
-        "resourceName": "qpasspro2d4ebecf2d4ebecfPreSignup",
+        "resourceName": "qpasspro2d4ebecf2d4ebecfPostConfirmation",
         "triggerProvider": "Cognito",
         "attributes": [
           "Arn",
@@ -91,7 +91,7 @@
       },
       {
         "category": "function",
-        "resourceName": "qpasspro2d4ebecf2d4ebecfPostConfirmation",
+        "resourceName": "qpasspro2d4ebecf2d4ebecfPreSignup",
         "triggerProvider": "Cognito",
         "attributes": [
           "Arn",
@@ -106,7 +106,7 @@
     "parentStack": {
       "Ref": "AWS::StackId"
     },
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:4200/\"],\"LogoutURLs\":[\"http://localhost:4200/\"]}",
-    "authProviders": []
+    "authProviders": [],
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://qpasspro-angular.s3.us-east-1.amazonaws.com/\",\"https://qpasspro-angular.s3.us-east-1.amazonaws.com/\"],\"LogoutURLs\":[\"https://qpasspro-angular.s3.us-east-1.amazonaws.com/\",\"https://qpasspro-angular.s3.us-east-1.amazonaws.com/\"]}"
   }
 }

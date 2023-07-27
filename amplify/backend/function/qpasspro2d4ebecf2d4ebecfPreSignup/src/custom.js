@@ -28,7 +28,7 @@ const handler = async (event) => {
   Parameters.forEach((element) => {
     parameters_dict[element.Name] = element.Value;
   });
-  //console.log("evento de presignup " + JSON.stringify(event));
+  console.log("evento de presignup " + JSON.stringify(event));
   const userPoolId = event.userPoolId;
   const trigger = event.triggerSource;
   const email = event.request.userAttributes.email;

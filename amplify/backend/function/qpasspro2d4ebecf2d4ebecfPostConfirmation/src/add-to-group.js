@@ -42,7 +42,7 @@ exports.handler = async (event) => {
   var potencial_usuario = await db.getUserByEmail(
     event.request.userAttributes.email
   );
-  //console.log("usuario potencial " + JSON.stringify(potencial_usuario));
+  console.log("usuario potencial " + JSON.stringify(potencial_usuario));
   if (potencial_usuario === null) {
     return Promise.reject(
       new Error(

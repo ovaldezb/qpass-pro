@@ -9,7 +9,7 @@
             "Name"
           ],
           "category": "function",
-          "resourceName": "qpasspro2d4ebecf2d4ebecfPreSignup",
+          "resourceName": "qpasspro2d4ebecf2d4ebecfPostConfirmation",
           "triggerProvider": "Cognito"
         },
         {
@@ -18,7 +18,7 @@
             "Name"
           ],
           "category": "function",
-          "resourceName": "qpasspro2d4ebecf2d4ebecfPostConfirmation",
+          "resourceName": "qpasspro2d4ebecf2d4ebecfPreSignup",
           "triggerProvider": "Cognito"
         }
       ],
