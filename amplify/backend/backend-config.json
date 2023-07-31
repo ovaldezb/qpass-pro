@@ -79,6 +79,13 @@
       "service": "Lambda"
     }
   },
+  "hosting": {
+    "amplifyhosting": {
+      "providerPlugin": "awscloudformation",
+      "service": "amplifyhosting",
+      "type": "manual"
+    }
+  },
   "parameters": {
     "AMPLIFY_function_qpasspro2d4ebecf2d4ebecfPostConfirmation_GROUP": {
       "usedBy": [
@@ -133,6 +140,22 @@
         {
           "category": "function",
           "resourceName": "qpasspro2d4ebecf2d4ebecfPreSignup"
+        }
+      ]
+    },
+    "AMPLIFY_hosting_amplifyhosting_appId": {
+      "usedBy": [
+        {
+          "category": "hosting",
+          "resourceName": "amplifyhosting"
+        }
+      ]
+    },
+    "AMPLIFY_hosting_amplifyhosting_type": {
+      "usedBy": [
+        {
+          "category": "hosting",
+          "resourceName": "amplifyhosting"
         }
       ]
     }

@@ -29,6 +29,12 @@
           "deploymentBucketName": "amplify-qpasspro-dev-175351-deployment",
           "s3Key": "amplify-builds/qpasspro2d4ebecf2d4ebecfPostConfirmation-6a505a55354171515637-build.zip"
         }
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d2tundxcogzvd3",
+          "type": "manual"
+        }
       }
     }
   }
